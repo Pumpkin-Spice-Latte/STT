@@ -33,7 +33,7 @@
 			<p id = "font">Don't have an account? Create one!</p>
 			<button onclick = "showHide()">Create account</button>
 			
-			<form action="loginServlet" method="post" id="myForm">
+			<form action="loginServlet" method="post" id="accountCreate">
 					<label id="font" for="username">Username</label><br>
 					<input type="text" name="username" id="username"><br>
 					
