@@ -6,105 +6,63 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-
-	#font {
-		font-family:"Lucida Sans Unicode";
-		color:white;
-	}
-	
-	a:link {
-	color: #bfbfbf;
-	}
-	a:visited {
-		color: #c4d9ff;
-	}
-	a:hover {
-		color: white;
-	}
-	a:active {
-		color: yellow;
-	}
-
-	.flex {
-	display: flex;
-	justify-content: center;
-	}
-	
-	.header, .footer {
-		padding: 2em;
-		text-align: center;
-		background-image: url("images/banner.png");
-		background-size: 300px 150px;
-		background-color: #121e63;
-	}
-
-	.menu {
-		float: left;
-		text-align: center;
-	}
-
-	.menuItem {
-		border: 1px solid black;
-		background-image: url("images/menu.png");
-		background-color: #4a60db;
-		padding: 10px;
-		margin-top: 30px;
-		margin-left: 75px;
-		margin-right: 75px;
-	}
-	
-	.footerItem {
-		border: 1px solid black;
-		background-image: url("images/menu.png");
-		background-color: #4a60db;
-		padding: 10px;
-		margin-top: 30px;
-		width: 300px;
-	}
-
-	.main {
-	float: left;
-	margin-top:200px;
-	margin-bottom:200px;
-	padding: 10px 20px;
-	border: 1px solid black;
-	background-image: url("images/menu.png");
-	background-color: #3c50b2;
-	}
-
-	body {
-		background-image: url("images/hex.png");
-		background-color: #121e63;
-	}
-
-</style>
+	<link rel="stylesheet" href="styles/login.css"/>
 </head>
 
 <body>
 
 	<div class="header">
-		<h1 id="font">Account Creation Simulator</h1>
+		<h1 id="font2">Speech2Teach Listening System</h1>
 	</div>
 
 	<div class="container-fluid">
 		
 		<div class="main col-xs-12 col-md-12 col-lg-12" align="center">
-			<form action="registration.php" method="post" target="_blank" id="myForm">
+			<form action="login.php" method="post" target="_blank" id="myForm">
+					<label id="font" for="usernameLogin">Username</label><br>
+					<input type="text" name="usernameLogin" id="usernameLogin"><br>
+					
+					<label id="font" for="passLogin">Password</label><br>
+					<input type="password" name="passLogin" id="passLogin"><br>
+					
+					<input type="submit" value="Log in" align="left">
+					&nbsp; &nbsp;
+					<input type="button" onclick="reset()" value="Reset" align="right">					
+			</form>
+			
+			<p id = "font">Don't have an account? Create one!</p>
+			<button onclick = "showHide()">Create account</button>
+			
+			<form id = "accountCreate" action="registration.php" method="post" target="_blank" id="myForm">
 					<label id="font" for="username">Username</label><br>
 					<input type="text" name="username" id="username"><br>
 					
 					<label id="font" for="pass1">Password</label><br>
 					<input type="password" name="pass1" id="pass1"><br>
 					
-					<input type="submit" value="Log in" align="left">
+					<label id="font" for="pass2">Confirm Password</label><br>
+					<input type="password" name="pass2" id="pass2"><br>
+					
+					<input type="submit" value="Create" align="left">
 					&nbsp; &nbsp;
-					<input type="button" onclick="reset()" value="Reset" align="right">
-			</form>
+					<input type="button" onclick="reset()" value="Reset" align="right">					
+			</form>	
 			
 			<script>
 				function reset() {
 					document.getElementById("myForm").reset();
+				}
+			</script>
+			
+			<script>
+				function showHide() {
+					var x = document.getElementById("accountCreate");
+					if (x.style.display === "block") {
+						x.style.display = "none";
+					}
+					else {
+						x.style.display = "block";
+					}
 				}
 			</script>
 			

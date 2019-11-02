@@ -1,0 +1,78 @@
+#accountCreate {
+	display: none;
+}
+
+#font {
+	font-family: "Lucida Sans Unicode";
+	color: white;
+}
+	
+#font2 {
+	font-family: "Lucida Sans Unicode";
+	color: black;
+}
+	
+a:link {
+	color: #bfbfbf;
+}
+a:visited {
+	color: #c4d9ff;
+}
+a:hover {
+	color: white;
+}
+a:active {
+	color: yellow;
+}
+
+.flex {
+display: flex;
+justify-content: center;
+}
+
+.header, .footer {
+	padding: 2em;
+	text-align: center;
+	background-image: url("images/banner.png");
+	background-size: 300px 150px;
+	background-color: #ffffff;
+}
+
+.menu {
+	float: left;
+	text-align: center;
+}
+
+.menuItem {
+	border-radius: 5px;
+	background-image: url("images/menu.png");
+	background-color: #4a60db;
+	padding: 10px;
+	margin-top: 30px;
+	margin-left: 75px;
+	margin-right: 75px;
+}
+	
+.footerItem {
+	border-radius: 5px;
+	background-image: url("images/menu.png");	
+	background-color: #4a60db;
+	padding: 10px;
+	margin-top: 30px;
+	width: 300px;
+}
+
+.main {
+	float: left;
+	margin-top:200px;
+	margin-bottom:200px;
+	padding: 10px 20px;
+	border-radius: 5px;
+	background-image: url("images/menu.png");
+	background-color: #2bd83f;
+	}
+
+body {
+	background-image: url("images/hex.png");
+	background-color: #ffffff;
+}
