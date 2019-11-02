@@ -26,8 +26,8 @@ a:active {
 }
 
 .flex {
-display: flex;
-justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .header, .footer {
@@ -68,11 +68,11 @@ justify-content: center;
 	margin-bottom:200px;
 	padding: 10px 20px;
 	border-radius: 5px;
-	background-image: url("images/menu.png");
+	background-image: url("stripes.png");
 	background-color: #2bd83f;
-	}
+}
 
 body {
-	background-image: url("images/hex.png");
+	background-image: url("hex.png");
 	background-color: #ffffff;
 }

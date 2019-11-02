@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="styles/login.css"/>
+	<link rel="stylesheet" href="styles/login.css">
 </head>
 
 <body>
@@ -33,12 +33,12 @@
 			<p id = "font">Don't have an account? Create one!</p>
 			<button onclick = "showHide()">Create account</button>
 			
-			<form id = "accountCreate" action="registration.php" method="post" target="_blank" id="myForm">
+			<form action="loginServlet" method="post" id="myForm">
 					<label id="font" for="username">Username</label><br>
 					<input type="text" name="username" id="username"><br>
 					
-					<label id="font" for="pass1">Password</label><br>
-					<input type="password" name="pass1" id="pass1"><br>
+					<label id="font" for="pass">Password</label><br>
+					<input type="password" name="pass" id="pass"><br>
 					
 					<label id="font" for="pass2">Confirm Password</label><br>
 					<input type="password" name="pass2" id="pass2"><br>
