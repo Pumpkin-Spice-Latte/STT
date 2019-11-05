@@ -12,6 +12,9 @@ var Content = '';
 
 var tempCount = 0;
 
+
+var masterTranscript = "";
+
 //Set property
 recognition.continuous = true;
 
@@ -25,6 +28,7 @@ recognition.onresult = function(event) {
   var current = event.resultIndex; 
   var transcript = event.results[current][0].transcript; 
     Content += transcript;
+    masterTranscript += transcript;
     Textbox.val(Content);  
 };
  
@@ -54,6 +58,15 @@ function startRecognition() {
 }
  
 
+
+
+//Parsing function
+function parseMasterTranscript() {
+	
+	//TEMPORARILY CREATE FAKE CODEBOOK TO TEST
+	
+	
+}
 
 //recognition.onspeechend = function() {
 //	displayListenerMessage("speech ended?");

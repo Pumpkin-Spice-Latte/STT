@@ -51,7 +51,7 @@ public class Login extends HttpServlet {
 						
 			if(objAccount.accountID != 0) {
 				//Set session
-				HttpSession session=request.getSession();  
+				HttpSession session = request.getSession();  
 		        session.setAttribute("currentUser", objAccount);
 		        
 		        //Write to response
