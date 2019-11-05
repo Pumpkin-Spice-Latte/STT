@@ -26,13 +26,14 @@ public class AccountDAO {
 		objPreparedStatement.executeUpdate();		
 	}	
 	
-	public ResultSet getAccountByUsername(String username) throws Exception {	
+	public ResultSet getAccountByUsernameAndPassword(String username, String password) throws Exception {	
 		//Build SQL
-		String SQL = "SELECT ACCOUNT_ID, USERNAME FROM ACCOUNTS WHERE USERNAME = ?";
+		String SQL = "SELECT ACCOUNT_ID, USERNAME FROM ACCOUNTS WHERE USERNAME = ? AND PASSWORD = ?";
 		
 		//Create statement
 		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
 		objPreparedStatement.setString(1, username);		
+		objPreparedStatement.setString(2, password);		
 								
 		//Return result set
 		return objPreparedStatement.executeQuery();		

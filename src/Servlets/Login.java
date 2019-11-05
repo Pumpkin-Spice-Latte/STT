@@ -46,7 +46,7 @@ public class Login extends HttpServlet {
 			} else if (pageEvent.equals("login")) {
 				
 				//Retrieve account
-				objAccount = new AccountFactory().getAccountByUsername(username);
+				objAccount = new AccountFactory().getAccountByUsernameAndPassword(username, password);
 			}
 						
 			if(objAccount.accountID != 0) {

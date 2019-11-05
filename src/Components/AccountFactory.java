@@ -33,7 +33,7 @@ public class AccountFactory {
 			objConnection.commit();
 			
 			//Get newly created account
-			objAccount = getAccountByUsername(username);
+			objAccount = getAccountByUsernameAndPassword(username, password);
 			
 		} catch(Exception e) {					
 			//Rollback
@@ -49,7 +49,7 @@ public class AccountFactory {
 	}
 		
 	@SuppressWarnings("finally")
-	public Account getAccountByUsername(String username) throws SQLException {
+	public Account getAccountByUsernameAndPassword(String username, String password) throws SQLException {
 		//Instantiate objects used in finally clause
 		Connection objConnection = null;		
 		Account objAccount = new Account();
@@ -62,7 +62,7 @@ public class AccountFactory {
 			AccountDAO objAccountDAO = new AccountDAO(objConnection);
 			
 			//Get resultset
-			ResultSet objRS = objAccountDAO.getAccountByUsername(username);
+			ResultSet objRS = objAccountDAO.getAccountByUsernameAndPassword(username, password);
 			
 			//Set object properties
 			setAccountObjectProperties(objAccount, objRS);							
