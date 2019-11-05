@@ -25,4 +25,16 @@ public class AccountDAO {
 		//Execute statement
 		objPreparedStatement.executeUpdate();		
 	}	
+	
+	public ResultSet getAccountByUsername(String username) throws Exception {	
+		//Build SQL
+		String SQL = "SELECT ACCOUNT_ID, USERNAME FROM ACCOUNTS WHERE USERNAME = ?";
+		
+		//Create statement
+		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
+		objPreparedStatement.setString(1, username);		
+								
+		//Return result set
+		return objPreparedStatement.executeQuery();		
+	}	
 }

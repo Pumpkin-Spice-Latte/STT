@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>var contextPath = "${pageContext.request.contextPath}";</script>
+	<script src="scripts/login.js"></script>	
 	<link rel="stylesheet" href="styles/login.css">
 <style>
 
@@ -78,6 +80,10 @@
 		background-image: url("images/hex.png");
 		background-color: #121e63;
 	}
+	
+	.message {
+		color:red;
+	}
 
 </style>
 </head>
@@ -87,28 +93,18 @@
 	<div class="header">
 		<h1 id="font">Account Creation Simulator</h1>
 	</div>
-
-	<div class="container-fluid">
-		
-		<div class="main col-xs-12 col-md-12 col-lg-12" align="center">
-			<form action="loginServlet" method="post" id="myForm">
-					<label id="font" for="username">Username</label><br>
-					<input type="text" name="username" id="username"><br>
-					
-					<label id="font" for="pass">Password</label><br>
-					<input type="password" name="pass" id="pass"><br>
-					
-					<input type="submit" value="Login" align="left">
-					&nbsp; &nbsp;
-					<input type="button" onclick="reset()" value="Reset" align="right">
-			</form>
-			
-			<script>
-				function reset() {
-					document.getElementById("myForm").reset();
-				}
-			</script>
-			
+	
+	<div class="container-fluid">		
+		<div class="main col-xs-12 col-md-12 col-lg-12" align="center">			
+			<span id="message" class="message"></span><br><br>
+			<label id="font" for="username">Username</label><br>
+			<input type="text" name="username" id="username"><br>			
+			<label id="font" for="pass">Password</label><br>
+			<input type="password" name="password" id="password"><br><br>			
+			<input id="btnLogin" value="Login" type="button" align="left" style="visibility:visible; display:inline-block" onclick="loginToAccount()">
+			<input id="btnCreate" value="Create" type="button" align="left" style="visibility:hidden; display:none" onclick="createAccount()">
+			<input id="btnCancel" value="Cancel" type="button" align="left" style="visibility:hidden; display:none" onclick="cancelCreateAccount()"><br><br>	
+			<a id="anchorCreateAccount" align="left" onclick="prepareToCreateAccount()" style="visibility:visible; display:inline-block">Create Account</a>														
 		</div>
 	</div>
 
