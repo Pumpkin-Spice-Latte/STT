@@ -13,9 +13,9 @@
 
 <body>
 
-	<div class="header">
+<!--	<div class="header">
 		<h1 id="font2">Speech2Teach Listening System</h1>
-	</div>
+	</div>  -->
 
 <!--  	<div class="container-fluid">		
 		<div class="main col-xs-12 col-md-12 col-lg-12" align="center">
@@ -69,8 +69,11 @@
 			
 =======
 	-->
-	<div class="container-fluid">		
-		<div class="main col-xs-12 col-md-12 col-lg-12" align="center">			
+	<div class="container-fluid">
+		<div class="title col-xs-12 col-md-12 col-lg-12" align="center">
+			<h1 id="font2" align="center">Speech2Teach Listening System</h1>
+		</div>
+		<div class="main col-xs-12 col-md-12 col-lg-12" align="center">
 			<span id="message" class="message"></span><br><br>
 			<label id="font" for="username">Username</label><br>
 			<input type="text" name="username" id="username"><br>			

@@ -56,9 +56,12 @@ function startRecognition() {
 	Content += ' '; 	
 	recognition.start();
 }
+
+//Stop recognition
+function stopRecognition() {
+	recognition.stop();
+}
  
-
-
 
 //Parsing function
 function parseMasterTranscript() {
