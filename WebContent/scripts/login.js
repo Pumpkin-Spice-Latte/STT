@@ -43,7 +43,7 @@ function sendHttpPostRequest(URL) {
     		if(this.responseText == "success") {
     			
     			//Redirect to home page
-    			window.location.href = contextPath + "/home.jsp"
+    			window.location.href = contextPath + "/listener.jsp"
     			
     		} else {
     			
