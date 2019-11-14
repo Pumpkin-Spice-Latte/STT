@@ -66,7 +66,42 @@ function stopRecognition() {
 //Parsing function
 function parseMasterTranscript() {
 	
-	//TEMPORARILY CREATE FAKE CODEBOOK TO TEST
+	//Test Code for code book
+	var testArr = ["cause", "effect", "science"];
+	var tcBook = [];
+	for(var i = 0; i < testArr.length; i++)
+	{
+		var codeWord = { str: testArr[i], count: 0, endStr: ""};
+		tcBook.push[codeWord];
+	}
+	
+	//Master Transcript check against code book
+	var MT = masterTranscript.split(" "); 
+	for(var i = 0; i < MT.length; i++) //iterate through length of MT
+	{
+		for(var j = 0; j < tcBook.length; j++) //Test each element of MT against cBook
+		{
+			if(MT[i] == tcBook[j].str) //If there is a match
+			{
+				if(tcBook[j].endStr) //If this cBook entry is a phrase
+				{
+					for(var h = i + 1; h < i + 10; h++) //Check the next 10 words 
+					{
+						if(MT[h] == tcBook[j].endStr) //Check if ending keyword is here.
+						{
+							tcBook[j].count += 1; //if so, increment count.
+						}
+					}
+				}
+				else
+				{
+					tcBook[j].count += 1; //If not phrase, go ahead and increment count.
+				}
+			}
+		}
+	}
+	
+	//Display code book before we get db functionality?
 	
 	
 }
