@@ -22,7 +22,7 @@
 			<div class="homeButton col-lg-4" style="margin-left: 70px; margin-right: 70px">
 			<a href="listener.jsp" target="_blank">Start Recording</a></div>
 			<div class="homeButton col-lg-4">
-			<a href="https://www.google.com/" target="_blank">Manage Codebooks</a></div>
+			<a href="codebooks.jsp" target="_blank">Manage Codebooks</a></div>
 														
 		</div>								
 	</div>
