@@ -7,7 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>var contextPath = "${pageContext.request.contextPath}";</script>
-	<script src="scripts/login.js"></script>	
+	<script src="scripts/codebook.js"></script>	
 	<link rel="stylesheet" href="styles/login.css">
 </head>
 
@@ -25,7 +25,6 @@
 					<p>Create Codebook</p>
 				</button>
 				<div id="codebookEdit" align="center" style="display: none;">
-					<p id="font2">test</p>
 				</div>
 				<div id="codebookCreate" align="center" style="display: none; padding-top: 150px;">
 					<label id="font" for="codebookName">Codebook Name</label><br>
@@ -53,6 +52,7 @@
 					<div style="padding-top: 50px;">
 						<p class="homeButton" id="codebookWords"></p>
 					</div>
+					<input type="button" value="test" onclick="saveCodebook()">
 				</div>
 			</div>											
 		</div>								
