@@ -15,8 +15,8 @@ public class dbConnection {
 		//Get connection
 		Connection objConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/s2tdb?useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
 		
-		// //Set auto commit to false, as we want to control this ourselves
-		// objConnection.setAutoCommit(false);
+		//Set auto commit to false, as we want to control this ourselves
+		objConnection.setAutoCommit(false);
 		
 		//Return connection
 		return objConnection;
