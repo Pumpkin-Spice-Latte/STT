@@ -11,14 +11,13 @@ import java.util.List;
 public class CodebookFactory {
 
 	private void setCodebookHeaderObjectProperties(CodebookHeader objCodebookHeader, ResultSet objRS) throws SQLException {		
-		objCodebookHeader.accountID = objRS.getInt("account_id");
-		objCodebookHeader.updateDate = objRS.getDate("update_date");		
+		objCodebookHeader.accountID = objRS.getInt("account_id");			
 		objCodebookHeader.codebookName = objRS.getString("codebook_name");
 		objCodebookHeader.accountID = objRS.getInt("account_id");
 	}
 	
 	@SuppressWarnings("finally")
-	public void createCodebookHeader(int accountID, String codebookName) throws Exception {
+	public void createCodebook(int accountID, String codebookName, List<String> listCodebookDetails) throws Exception {
 		//Instantiate objects used in finally clause
 		Connection objConnection = null;				
 		
@@ -27,14 +26,30 @@ public class CodebookFactory {
 			objConnection = dbConnection.getConnection();
 			
 			//Instantiate DAO object
-			CodebookDAO objCodeboookDAO = new CodebookDAO(objConnection);
+			CodebookDAO objCodebookDAO = new CodebookDAO(objConnection);
 			
-			//Update database
-			objCodeboookDAO.insertIntoCodebookHdr(codebookName, new Date(), accountID);					
-						
-			//Commit
-			objConnection.commit();			
-			
+			//Insert header
+			objCodebookDAO.insertIntoCodebookHdr(codebookName, accountID);										
+			objConnection.commit(); //Commit so we can retrieve header
+
+			//Get header
+			int codebookHeaderID = objCodebookDAO.getLastCreatedCodebookByAccountID(accountID);
+												
+			//Insert details
+			for (String detail : listCodebookDetails) {
+				String startWord = "";
+				String endWord = "";
+				if (detail.contains("...")) {					
+					startWord = detail.substring(0, detail.indexOf(" ..."));
+					endWord = detail.substring(detail.indexOf(" ...") + 4);
+				} else {
+					startWord = detail;
+				}
+				if (startWord.trim().length() > 0)
+					objCodebookDAO.insertIntoCodebookDtl(codebookHeaderID, startWord, endWord);
+			}	
+			objConnection.commit(); //Final commit
+
 		} catch(Exception e) {					
 			//Rollback
 			objConnection.rollback();

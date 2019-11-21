@@ -6,7 +6,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script>var contextPath = "${pageContext.request.contextPath}";</script>
 	<script src="scripts/codebook.js"></script>	
 	<link rel="stylesheet" href="styles/login.css">
 </head>
@@ -54,71 +53,11 @@
 						<p class="homeButton" id="codebookWords"></p><br>
 					</div>
 					<div style="padding-top: 20px;">
-						<button id="submitCodebook">Finish and Create</button>
-					</div>
-					<input type="button" value="test" onclick="saveCodebook()">
+						<button id="submitCodebook" onclick="createCodebook()">Finish and Create</button>
+					</div>					
 				</div>
 			</div>											
 		</div>								
 	</div>
-
-<script>
-function showEdit() {
-	var x = document.getElementById("codebookEdit");
-	var y = document.getElementById("codebookCreate");
-	if (y.style.display === "block") {
-		y.style.display = "none";
-	}
-	if (x.style.display === "none") {
-		x.style.display = "block";
-	}
-	else {
-		x.style.display = "none";
-	}
-}
-
-function showCreate() {
-	var x = document.getElementById("codebookCreate");
-	var y = document.getElementById("codebookEdit");
-	if (y.style.display === "block") {
-		y.style.display = "none";
-	}
-	if (x.style.display === "none") {
-		x.style.display = "block";
-	}
-	else {
-		x.style.display = "none";
-	}
-}
-
-function showIfPhrase(select) {
-	var x = document.getElementById("isPhrase");
-	if (select == "yes") {
-		x.style.display = "block";
-	}
-	else {
-		x.style.display = "none";
-	}
-}
-
-function saveWord(select) {
-	var a = document.getElementById("phraseSelect");
-	var x = document.getElementById("codebookWord");
-	var y = document.getElementById("codebookEndWord");
-	var z = document.getElementById("codebookWords");
-
-	if (a.options[a.selectedIndex].value == "yes") {
-		z.innerHTML += x.value + " ... " + y.value + ", ";
-		x.value ="";
-		y.value = "";
-	}
-	else {
-		z.innerHTML += x.value + ", ";
-		x.value ="";
-	}
-
-}
-</script>
-
 </body>
 </html>

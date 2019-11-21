@@ -7,9 +7,7 @@
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
         <link rel="stylesheet" href="styles/login.css">
-        <title>listener</title>   
-        
-        <script>var contextPath = "${pageContext.request.contextPath}";</script>
+        <title>listener</title>                   
         
     </head>
 

@@ -6,7 +6,6 @@ public class CodebookHeader {
 	
 	//Properties
 	public int codebookID = 0;
-	public String codebookName = "";	
-	public Date updateDate = new Date();
+	public String codebookName = "";		
 	public int accountID = 0;	
 }

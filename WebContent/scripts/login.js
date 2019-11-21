@@ -43,7 +43,7 @@ function sendHttpPostRequest(URL) {
     		if(this.responseText == "success") {
     			
     			//Redirect to home page
-    			window.location.href = contextPath + "/home.jsp"
+    			window.location.href = "home.jsp"
     			
     		} else {
     			
@@ -58,11 +58,11 @@ function sendHttpPostRequest(URL) {
 }
 
 function createAccount() {	
-	sendHttpPostRequest(contextPath + "/loginServlet?event=create");
+	sendHttpPostRequest("loginServlet?event=create");
 }
 
 function loginToAccount() {
-	sendHttpPostRequest(contextPath + "/loginServlet?event=login");
+	sendHttpPostRequest("loginServlet?event=login");
 }
 
 

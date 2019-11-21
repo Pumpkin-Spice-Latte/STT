@@ -14,29 +14,28 @@ public class CodebookDAO {
 	}
 	
 	//Methods
-	public void insertIntoCodebookHdr(String codebookName, Date updateDate, int accountID) throws Exception {	
+	public void insertIntoCodebookHdr(String codebookName, int accountID) throws Exception {					
 		//Build SQL
-		String SQL = "INSERT INTO CODEBOOK_HDR (CODEBOOK_NAME, UPDATE_DATE, ACCOUNT_ID) VALUES (?,?,?)";
+		String SQL = "INSERT INTO CODEBOOK_HDR (CODEBOOK_NAME, ACCOUNT_ID) VALUES (?,?)";
 		
 		//Create statement
 		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
 		objPreparedStatement.setString(1, codebookName);
-		objPreparedStatement.setDate(2, (java.sql.Date) updateDate);
-		objPreparedStatement.setInt(3, accountID);
+		objPreparedStatement.setInt(2, accountID);
 								
 		//Execute statement
-		objPreparedStatement.executeUpdate();		
+		objPreparedStatement.executeUpdate();								
 	}	
 	
-	public void insertIntoCodebookDtl(int codebookID, String value, Date updateDate) throws Exception {	
+	public void insertIntoCodebookDtl(int codebookID, String startWord, String endWord) throws Exception {	
 		//Build SQL
-		String SQL = "INSERT INTO CODEBOOK_DTL (CODEBOOK_ID, VALUE, UPDATE_DATE) VALUES (?,?,?)";
+		String SQL = "INSERT INTO CODEBOOK_DTL (CODEBOOK_ID, START_WORD, END_WORD) VALUES (?,?,?)";
 		
 		//Create statement
 		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
 		objPreparedStatement.setInt(1, codebookID);
-		objPreparedStatement.setString(2, value);
-		objPreparedStatement.setDate(3, (java.sql.Date) updateDate);
+		objPreparedStatement.setString(2, startWord);
+		objPreparedStatement.setString(3, endWord);
 								
 		//Execute statement
 		objPreparedStatement.executeUpdate();		
@@ -74,4 +73,24 @@ public class CodebookDAO {
 		//Return result set
 		return objPreparedStatement.executeQuery();		
 	}
+
+
+
+	public int getLastCreatedCodebookByAccountID(int accountID) throws Exception {	
+		//Initialize preparedStatement
+		PreparedStatement objPreparedStatement = null;		
+		
+		//Build SQL
+		String SQL = "SELECT MAX(CODEBOOK_ID) FROM CODEBOOK_HDR WHERE ACCOUNT_ID = ? ";			
+		objPreparedStatement = objConnection.prepareStatement(SQL);
+		objPreparedStatement.setInt(1, accountID);			
+											
+		//Return result set
+		ResultSet objRS = objPreparedStatement.executeQuery();		
+
+		objRS.next();
+		return objRS.getInt(1);
+	}
+
+	
 }

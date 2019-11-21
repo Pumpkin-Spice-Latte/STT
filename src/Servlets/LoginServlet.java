@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/loginServlet")
-public class Login extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -57,12 +57,12 @@ public class Login extends HttpServlet {
 				out.append("success");	
 			} else {
 				//Write to response
-				out.append("failure");
+				out.append("error");
 			}
 			
 		} catch (Exception e) {
 			//Write to response
-			out.append("failure");
+			out.append("error");
 			
 		} finally {
 			//Close response
