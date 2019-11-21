@@ -62,8 +62,30 @@ public class CodebookServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		
-		//code here for http get requests
+		try {
+			//Get account object
+			HttpSession session = request.getSession();  
+			Account objAccount = (Account) session.getAttribute("currentUser");
+	
+			//Make sure user has acquired valid session
+			if (objAccount.accountID == 0)
+				throw new Exception();
+	
+			CodebookFactory objCodebookFactory = new CodebookFactory();
+			List<CodebookHeader> colCodebookHeaders;			
+			colCodebookHeaders = objCodebookFactory.getCodebookHdrByAccountIDAndCodebookID(objAccount.accountID, 0);			
+			objCodebookFactory = null;
+	
+			request.setAttribute("codebookDropdownValues", colCodebookHeaders);
+	
+			RequestDispatcher dispatcher = request.getRequestDispatcher("codebooks.jsp");
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
-
+	
+	
 }
