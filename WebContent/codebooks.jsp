@@ -17,13 +17,13 @@
 		</div>
 		<div class="main flex col-xs-12 col-md-12 col-lg-12" align="center" style="padding-bottom: 40px;">
 			<div>
-				<button onclick="showEdit()" class="homeButton col-lg-6" style="margin-right: 80px;">
-					<p>Edit Codebooks</p>
+				<button onclick="showView()" class="homeButton col-lg-6" style="margin-right: 80px;">
+					<p>View Codebooks</p>
 				</button>
 				<button onclick="showCreate()" class="homeButton col-lg-6" style="margin-left: 80px;">
 					<p>Create Codebook</p>
 				</button>
-				<div id="codebookEdit" align="center" style="display: none;">
+				<div id="codebookView" align="center" style="display: none;">
 				</div>
 				<div id="codebookCreate" align="center" style="display: none; padding-top: 150px;">
 					<label id="font" for="codebookName">Codebook Name</label><br>
