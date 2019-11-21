@@ -47,11 +47,15 @@
 							</div>
 						</div>
 						<div class="col-lg-4" style="padding-top: 25px;">
-							<button onClick="saveWord()">Save</button><br>
+							<button onClick="saveWord()">Add to Codebook</button><br>
 						</div><br>
 					</div>
 					<div style="padding-top: 50px;">
-						<p class="homeButton" id="codebookWords"></p>
+						<p id="font2">Current Words</p>
+						<p class="homeButton" id="codebookWords"></p><br>
+					</div>
+					<div style="padding-top: 20px;">
+						<button id="submitCodebook">Finish and Create</button>
 					</div>
 				</div>
 			</div>											
