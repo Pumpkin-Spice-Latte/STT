@@ -25,8 +25,8 @@ function createCodebook() {
         sendHttpPostRequest("codebookServlet?event=addCodebook", params);
 }
 
-function showEdit() {
-	var x = document.getElementById("codebookEdit");
+function showView() {
+	var x = document.getElementById("codebookView");
 	var y = document.getElementById("codebookCreate");
 	if (y.style.display === "block") {
 		y.style.display = "none";
@@ -41,7 +41,7 @@ function showEdit() {
 
 function showCreate() {
 	var x = document.getElementById("codebookCreate");
-	var y = document.getElementById("codebookEdit");
+	var y = document.getElementById("codebookView");
 	if (y.style.display === "block") {
 		y.style.display = "none";
 	}
