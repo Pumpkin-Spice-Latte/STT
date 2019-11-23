@@ -21,8 +21,14 @@ function sendHttpPostRequest(URL, params) {
 function createCodebook() {
         var codebookWords = document.getElementById("codebookWords").innerHTML;
         var codebookName = document.getElementById("codebookName").value;
-        var params = "codebookName=" + codebookName + "&codebookWords=" + codebookWords;
-        sendHttpPostRequest("codebookServlet?event=addCodebook", params);
+        
+        if (codebookWords === "" || codebookName === "") {
+        	alert("One of the fields is empty!")
+        }
+        else {
+        	var params = "codebookName=" + codebookName + "&codebookWords=" + codebookWords;
+        	sendHttpPostRequest("codebookServlet?event=addCodebook", params);
+        }
 }
 
 function showView() {
