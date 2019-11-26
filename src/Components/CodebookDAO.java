@@ -61,13 +61,10 @@ public class CodebookDAO {
 		return objPreparedStatement.executeQuery();		
 	}	
 	
-	public ResultSet getCodebookDtlByCodebookID(int codebookID) throws Exception {	
-		//Initialize preparedStatement
-		PreparedStatement objPreparedStatement = null;		
-		
+	public ResultSet getCodebookDtlsByCodebookID(int codebookID) throws Exception {					
 		//Build SQL
 		String SQL = "SELECT * FROM CODEBOOK_DTL WHERE CODEBOOK_ID = ? ";			
-		objPreparedStatement = objConnection.prepareStatement(SQL);
+		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
 		objPreparedStatement.setInt(1, codebookID);			
 											
 		//Return result set
@@ -76,13 +73,10 @@ public class CodebookDAO {
 
 
 
-	public int getLastCreatedCodebookByAccountID(int accountID) throws Exception {	
-		//Initialize preparedStatement
-		PreparedStatement objPreparedStatement = null;		
-		
+	public int getLastCreatedCodebookByAccountID(int accountID) throws Exception {			
 		//Build SQL
 		String SQL = "SELECT MAX(CODEBOOK_ID) FROM CODEBOOK_HDR WHERE ACCOUNT_ID = ? ";			
-		objPreparedStatement = objConnection.prepareStatement(SQL);
+		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
 		objPreparedStatement.setInt(1, accountID);			
 											
 		//Return result set

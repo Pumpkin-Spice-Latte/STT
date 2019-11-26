@@ -11,9 +11,16 @@ import java.util.List;
 public class CodebookFactory {
 
 	private void setCodebookHeaderObjectProperties(CodebookHeader objCodebookHeader, ResultSet objRS) throws SQLException {		
-		objCodebookHeader.accountID = objRS.getInt("account_id");			
+		objCodebookHeader.codebookID = objRS.getInt("codebook_id");			
 		objCodebookHeader.codebookName = objRS.getString("codebook_name");
 		objCodebookHeader.accountID = objRS.getInt("account_id");
+	}
+
+	private void setCodebookDetailObjectProperties(CodebookDetail objCodebookDetail, ResultSet objRS) throws SQLException {		
+		objCodebookDetail.codebookID = objRS.getInt("codebook_id");			
+		objCodebookDetail.detailID = objRS.getInt("detail_id");
+		objCodebookDetail.startWord = objRS.getString("start_word");
+		objCodebookDetail.endWord = objRS.getString("end_word");
 	}
 	
 	@SuppressWarnings("finally")
@@ -92,6 +99,40 @@ public class CodebookFactory {
 			
 			//Return Account
 			return listCodebookHeaders;
+		}			
+	}
+
+	@SuppressWarnings("finally")
+	public List<CodebookDetail> getCodeboodDtlByCodebookID(int codebookID) throws SQLException {
+		//Instantiate objects used in finally clause
+		Connection objConnection = null;		
+		List<CodebookDetail> listCodebookDetails = new ArrayList<CodebookDetail>();
+		
+		try {					
+			//Get connection
+			objConnection = dbConnection.getConnection();
+			
+			//Instantiate DAO object
+			CodebookDAO objCodebookDAO = new CodebookDAO(objConnection);					
+			
+			//Get resultset
+			ResultSet objRS = objCodebookDAO.getCodebookDtlsByCodebookID(codebookID);
+						
+			//Set c properties
+			while (objRS.next()) {
+				CodebookDetail objCodebookDetail = new CodebookDetail();
+				setCodebookDetailObjectProperties(objCodebookDetail, objRS);
+				listCodebookDetails.add(objCodebookDetail);
+			}
+													
+		} catch(Exception e) {			
+			//Do nothing					
+		} finally {			
+			//Destroy connection
+			objConnection = null;
+			
+			//Return Account
+			return listCodebookDetails;
 		}			
 	}
 }

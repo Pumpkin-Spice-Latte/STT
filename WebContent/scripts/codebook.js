@@ -18,12 +18,40 @@ function sendHttpPostRequest(URL, params) {
         xhttp.send(params);
 }
 
+function writeCodebookDropdown() {
+	//Request	
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() { 
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+			document.getElementById("codebookDropdown").innerHTML = this.responseText;
+		}            
+	}
+	xmlHttp.open("GET", "codebookServlet?event=writeCodebookDropdown", true); 
+	xmlHttp.send(null);
+}
+
+function writeCodebookDetails(codebookID) {
+	//Params
+	var params = "codebookID=" + codebookID;
+	
+	//Request
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() { 
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+			document.getElementById("codebookDetailsTable").innerHTML = this.responseText;
+		}            
+	}	
+	xmlHttp.open("POST", "codebookServlet?event=writeCodebookDetailsTable", true);
+        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttp.send(params);
+}
+
 function createCodebook() {
         var codebookWords = document.getElementById("codebookWords").innerHTML;
         var codebookName = document.getElementById("codebookName").value;
         
         if (codebookWords === "" || codebookName === "") {
-        	alert("One of the fields is empty!")
+        	alert("One of the fields is empty!");
         }
         else {
         	var params = "codebookName=" + codebookName + "&codebookWords=" + codebookWords;
@@ -38,6 +66,8 @@ function showView() {
 		y.style.display = "none";
 	}
 	if (x.style.display === "none") {
+		writeCodebookDropdown();
+		document.getElementById("codebookDetailsTable").innerHTML = "";
 		x.style.display = "block";
 	}
 	else {

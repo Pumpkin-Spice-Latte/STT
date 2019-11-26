@@ -37,6 +37,7 @@ public class CodebookServlet extends HttpServlet {
 			String pageEvent = request.getParameter("event");
 			if (pageEvent != null) {
 				switch(pageEvent) {
+
 					case "addCodebook":
 						//Get post variables
 						String[] temp = request.getParameter("codebookWords").split(",");
@@ -46,10 +47,22 @@ public class CodebookServlet extends HttpServlet {
 						//Create codebook
 						CodebookFactory objCodebookFactory = new CodebookFactory();
 						objCodebookFactory.createCodebook(objAccount.accountID, codebookName, codebookDetails);
-						objCodebookFactory = null;						
+						objCodebookFactory = null;							
+						break;
+
+					case "writeCodebookDetailsTable":
+						//Write details table
+						out.append(writeCodebookDetailsTable(Integer.parseInt(request.getParameter("codebookID"))));
+						out.close();	
+						break;
+
+						
+						
+
 				}
 			}	
 
+			//Send status back to client
 			out.append("success");
 
 		} catch (Exception e) {
@@ -60,10 +73,81 @@ public class CodebookServlet extends HttpServlet {
 		
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-		
-		//code here for http get requests
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		try {
+			//Get account object
+			HttpSession session = request.getSession();  
+			Account objAccount = (Account) session.getAttribute("currentUser");
+
+			//Make sure user has acquired valid session
+			if (objAccount.accountID == 0)
+				throw new Exception();
+
+			//Get querystring to determine page event
+			String pageEvent = request.getParameter("event");
+			if (pageEvent != null) {
+				switch(pageEvent) {
+					case "writeCodebookDropdown":
+						//Write codebook dropdown
+						out.append(writeCodebookDropdown(objAccount.accountID));											
+						break;
+												
+				}
+			}	
+
+
+		} catch (Exception e) {			
+			out.append("error");
+		} finally {
+			out.close();
+		}					
+	}
+
+
+	private String writeCodebookDropdown(int accountID) throws SQLException {
+		//Get all codebooks created by user	
+		List<CodebookHeader> listCodebookHeaders = new CodebookFactory().getCodebookHdrByAccountIDAndCodebookID(accountID, 0);
+
+		//Instantiate stringbuilder
+		StringBuilder str = new StringBuilder();
+
+		//Write dropdown
+		str.append("<select id='codebookDropdown' onchange='writeCodebookDetails(this.value)'>");
+		str.append("	    <option value='-1'>-- Select a codebook --</option>");
+		for (CodebookHeader objCodebookHeader: listCodebookHeaders) {
+			str.append("<option value='" + objCodebookHeader.codebookID + "'>");			
+			str.append(objCodebookHeader.codebookName);
+			str.append("</option>");
+		}		
+		str.append("</select>");
+
+		//Return 
+		return str.toString();
+	}
+
+	private String writeCodebookDetailsTable(int codebookID) throws SQLException {
+		//Get all codebooks created by user	
+		List<CodebookDetail> listcodebookDetails = new CodebookFactory().getCodeboodDtlByCodebookID(codebookID);
+
+		//Instantiate stringbuilder
+		StringBuilder str = new StringBuilder();
+
+		//Write table
+		str.append("<table border='2'>");
+		str.append("	<th><b>Word/Phrase</b></th>");		
+		for (CodebookDetail objCodebookDetail: listcodebookDetails) {
+			str.append("<tr>");
+			str.append("	<td>");
+			str.append(objCodebookDetail.startWord);
+			if (!objCodebookDetail.endWord.equals(""))
+				str.append(" ... " + objCodebookDetail.endWord);
+			str.append("	</td>");
+			str.append("</tr>");
+		}
+		str.append("</table>");
+
+		return str.toString();
 	}
 
 }

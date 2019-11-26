@@ -25,6 +25,10 @@
 					<p>Create Codebook</p>
 				</button>
 				<div id="codebookView" align="center" style="display: none;">
+					<div id="codebookDropdown" align="center">
+					</div><br>					
+					<div id="codebookDetailsTable" align="center">
+					</div>					
 				</div>
 				<div id="codebookCreate" align="center" style="display: none; padding-top: 150px;">
 					<label id="font" for="codebookName">Codebook Name</label><br>
