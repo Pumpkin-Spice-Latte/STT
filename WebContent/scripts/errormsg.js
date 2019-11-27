@@ -51,6 +51,7 @@ function sessionAlert() {
 	alertObj.id = "alertBox";
 	alertObj.className = "flex col-xs-12 col-md-12 col-lg-12";
 	alertObj.style.visiblity="visible";
+	alertObj.align = "center";
 
 	h1 = alertObj.appendChild(d.createElement("h1"));
 	h1.appendChild(d.createTextNode(ALERT_TITLE));

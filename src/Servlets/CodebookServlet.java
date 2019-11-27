@@ -143,6 +143,9 @@ public class CodebookServlet extends HttpServlet {
 			str.append("</tr>");
 		}
 		str.append("</table>");
+		str.append("</div><br>");
+		str.append("<div align = \"center\" style = \"padding-top: 5px;\">");
+		str.append("	<button style=\"color: red;\">Delete Codebook</button>");
 
 		return str.toString();
 	}
