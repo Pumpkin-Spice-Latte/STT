@@ -104,15 +104,26 @@ function saveWord(select) {
 	var x = document.getElementById("codebookWord");
 	var y = document.getElementById("codebookEndWord");
 	var z = document.getElementById("codebookWords");
+	var letters = /^[a-z]+$/;
 
 	if (a.options[a.selectedIndex].value == "yes") {
-		z.innerHTML += x.value + " ... " + y.value + ", ";
-		x.value ="";
-		y.value = "";
+		if (x.value.match(letters) && y.value.match(letters)) {
+			z.innerHTML += x.value + " ... " + y.value + ", ";
+			x.value ="";
+			y.value = "";
+		}
+		else {
+        	alert("Error", "Words can only be lowercase letters.");
+		}
 	}
 	else {
-		z.innerHTML += x.value + ", ";
-		x.value ="";
+		if (x.value.match(letters)) {
+			z.innerHTML += x.value + ", ";
+			x.value ="";
+		}
+		else {
+        	alert("Error", "Words can only be lowercase letters.");
+		}
 	}
 
 }

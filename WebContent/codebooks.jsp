@@ -28,7 +28,7 @@
 					<div id="codebookDropdown" align="center">
 					</div><br>					
 					<div id="codebookDetailsTable" align="center">
-					</div>					
+					</div>		
 				</div>
 				<div id="codebookCreate" align="center" style="display: none; padding-top: 150px;">
 					<label id="font" for="codebookName">Codebook Name</label><br>
@@ -54,6 +54,7 @@
 						</div><br>
 					</div>
 					<div style="padding-top: 50px;">
+						<br>
 						<p id="font2">Current Words</p>
 						<p class="homeButton" id="codebookWords"></p><br>
 					</div>
