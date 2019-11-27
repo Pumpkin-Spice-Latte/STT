@@ -73,6 +73,44 @@ function sessionAlert() {
 	
 }
 
+function deleteCodebookAlert() {
+	var ALERT_TITLE = "Hold up!";
+	d = document;
+
+	if(d.getElementById("modalContainer")) return;
+
+	mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+	mObj.id = "modalContainer";
+	
+	alertObj = mObj.appendChild(d.createElement("div"));
+	alertObj.id = "alertBox";
+	alertObj.className = "flex col-xs-12 col-md-12 col-lg-12";
+	alertObj.style.visiblity="visible";
+	alertObj.align = "center";
+
+	h1 = alertObj.appendChild(d.createElement("h1"));
+	h1.appendChild(d.createTextNode(ALERT_TITLE));
+
+	msg = alertObj.appendChild(d.createElement("p"));
+	msg.innerHTML = "You sure you want to delete this session? This cannot be undone.";
+
+	btnYes = alertObj.appendChild(d.createElement("a"));
+	btnYes.id = "deleteSession";
+	btnYes.appendChild(d.createTextNode("Yes"));
+	btnYes.href = "#";
+	btnYes.focus();
+	btnYes.onclick = function() { removeCustomAlert();return false; }
+	
+	btnNo = alertObj.appendChild(d.createElement("a"));
+	btnNo.id = "closeBtn";
+	btnNo.appendChild(d.createTextNode("No"));
+	btnNo.href = "#";
+	btnNo.focus();
+	btnNo.onclick = function() { removeCustomAlert();return false; }
+
+	alertObj.style.display = "block";
+}
+
 function removeCustomAlert() {
 	document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
 }

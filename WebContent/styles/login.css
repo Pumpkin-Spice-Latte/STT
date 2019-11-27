@@ -80,6 +80,22 @@ a:active {
 	text-decoration: none;
 }
 
+#alertBox #deleteSession {
+	display: block;
+	position: relative;
+	margin: 5px auto;
+	padding: 7px;
+	border: 0 none;
+	width: 70px;
+	font-family: "Lucida Sans Unicode";
+	text-transform: uppercase;
+	text-align: center;
+	color: black;
+	background-color: white;
+	border-radius: 3px;
+	text-decoration: none;
+}
+
 .homeButton {
 	font-family: "Lucida Sans Unicode";
 	border-radius: 5px;
