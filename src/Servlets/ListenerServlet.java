@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebServlet("/codebookServlet")
-public class CodebookServlet extends HttpServlet {
+@WebServlet("/listenerServlet")
+public class ListenerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -37,37 +37,19 @@ public class CodebookServlet extends HttpServlet {
 			String pageEvent = request.getParameter("event");
 			if (pageEvent != null) {
 				switch(pageEvent) {
-
-					case "addCodebook":
-						//Get post variables
-						String[] temp = request.getParameter("codebookWords").split(",");
-						List<String> codebookDetails = Arrays.asList(temp);
-						String codebookName = request.getParameter("codebookName");
-
-						//Create codebook
-						CodebookFactory objCodebookFactory = new CodebookFactory();
-						objCodebookFactory.createCodebook(objAccount.accountID, codebookName, codebookDetails);
-						objCodebookFactory = null;							
-						break;
-
-					case "writeCodebookDetailsTable":
-						//Write details table
-						out.append(writeCodebookDetailsTable(Integer.parseInt(request.getParameter("codebookID"))));
-						out.close();	
-						break;
-												
+					case "getCodebook":
+						int a = 0;
+						
 				}
 			}	
 
-			//Send status back to client
 			out.append("success");
 
 		} catch (Exception e) {
 			out.append("error");
 		} finally {
 			out.close();
-		}
-		
+		}		
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -85,21 +67,25 @@ public class CodebookServlet extends HttpServlet {
 			String pageEvent = request.getParameter("event");
 			if (pageEvent != null) {
 				switch(pageEvent) {
+					case "init":
+					        response.sendRedirect("listener.jsp");  	
+						break;
+					
 					case "writeCodebookDropdown":
 						//Write codebook dropdown
 						out.append(writeCodebookDropdown(objAccount.accountID));											
 						break;
-												
 				}
-			}	
+			}				
 
-
-		} catch (Exception e) {			
+		} catch (Exception e) {
 			out.append("error");
 		} finally {
 			out.close();
-		}					
+		}
+		
 	}
+
 
 
 	private String writeCodebookDropdown(int accountID) throws SQLException {
@@ -110,7 +96,7 @@ public class CodebookServlet extends HttpServlet {
 		StringBuilder str = new StringBuilder();
 
 		//Write dropdown
-		str.append("<select id='codebookDropdown' onchange='writeCodebookDetails(this.value)'>");
+		str.append("<select id='codebookDropdown'>");
 		str.append("	    <option value='-1'>-- Select a codebook --</option>");
 		for (CodebookHeader objCodebookHeader: listCodebookHeaders) {
 			str.append("<option value='" + objCodebookHeader.codebookID + "'>");			
@@ -122,29 +108,4 @@ public class CodebookServlet extends HttpServlet {
 		//Return 
 		return str.toString();
 	}
-
-	private String writeCodebookDetailsTable(int codebookID) throws SQLException {
-		//Get all codebooks created by user	
-		List<CodebookDetail> listcodebookDetails = new CodebookFactory().getCodeboodDtlByCodebookID(codebookID);
-
-		//Instantiate stringbuilder
-		StringBuilder str = new StringBuilder();
-
-		//Write table
-		str.append("<table border='2'>");
-		str.append("	<th><b>Word/Phrase</b></th>");		
-		for (CodebookDetail objCodebookDetail: listcodebookDetails) {
-			str.append("<tr>");
-			str.append("	<td>");
-			str.append(objCodebookDetail.startWord);
-			if (!objCodebookDetail.endWord.equals(""))
-				str.append(" ... " + objCodebookDetail.endWord);
-			str.append("	</td>");
-			str.append("</tr>");
-		}
-		str.append("</table>");
-
-		return str.toString();
-	}
-
 }
