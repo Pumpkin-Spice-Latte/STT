@@ -47,7 +47,7 @@ recognition.onend = function() {
 //On error
 recognition.onerror = function(event) {
   if(event.error == 'no-speech') {
-	  displayListenerMessage("No speech, try aagin")  
+	  displayListenerMessage("No speech, try again")  
   }
 }
  
@@ -127,7 +127,7 @@ function getCodebook() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-			alert("success");
+                		sessionAlert();
                 }
         };
         xhttp.open("POST", "listenerServlet?event=getCodebook", true);
