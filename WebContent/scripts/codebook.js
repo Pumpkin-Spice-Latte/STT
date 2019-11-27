@@ -5,11 +5,11 @@ function sendHttpPostRequest(URL, params) {
                 if (this.readyState == 4 && this.status == 200) {
                         if(this.responseText == "success") {
                                 
-                                alert("codebook successfully added!");
+                                alert("Success", "codebook successfully added!");
                                 
                         } else {
                                 
-                                alert("Error processing request.");
+                                alert("Error", "Error processing request.");
                         } 
                 }
         };
@@ -51,7 +51,7 @@ function createCodebook() {
         var codebookName = document.getElementById("codebookName").value;
         
         if (codebookWords === "" || codebookName === "") {
-        	alert("One of the fields is empty!");
+        	alert("Error", "One of the fields is empty!");
         }
         else {
         	var params = "codebookName=" + codebookName + "&codebookWords=" + codebookWords;

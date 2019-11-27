@@ -24,7 +24,7 @@
 				<button onclick="showCreate()" class="homeButton col-lg-6" style="margin-left: 80px;">
 					<p>Create Codebook</p>
 				</button>
-				<div id="codebookView" align="center" style="display: none;">
+				<div id="codebookView" align="center" style="display: none; padding-top: 150px;">
 					<div id="codebookDropdown" align="center">
 					</div><br>					
 					<div id="codebookDetailsTable" align="center">

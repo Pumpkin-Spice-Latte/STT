@@ -1,13 +1,13 @@
-var ALERT_TITLE = "Error";
 var ALERT_BUTTON_TEXT = "Ok";
 
 if(document.getElementById) {
-	window.alert = function(txt) {
-		createCustomAlert(txt);
+	window.alert = function(noticeMsg, txt) {
+		createCustomAlert(noticeMsg, txt);
 	}
 }
 
-function createCustomAlert(txt) {
+function createCustomAlert(noticeMsg, txt) {
+	var ALERT_TITLE = noticeMsg;
 	d = document;
 
 	if(d.getElementById("modalContainer")) return;
