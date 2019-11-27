@@ -59,15 +59,15 @@ function sessionAlert() {
 	msg = alertObj.appendChild(d.createElement("p"));
 	msg.innerHTML = "Please provide a name for this session:";
 	
-	name = alertObj.appendChild(d.createElement("input"));
-	name.id = "sessionNameInput";
+	giveSessionName = alertObj.appendChild(d.createElement("input"));
+	giveSessionName.id = "sessionNameInput";
 
 	btn = alertObj.appendChild(d.createElement("a"));
 	btn.id = "closeBtn";
 	btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
 	btn.href = "#";
 	btn.focus();
-	btn.onclick = function() { removeCustomAlert();return false; }
+	btn.onclick = function() { createNewSession();return false; }
 
 	alertObj.style.display = "block";
 	

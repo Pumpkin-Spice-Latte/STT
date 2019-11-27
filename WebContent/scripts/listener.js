@@ -65,16 +65,7 @@ function stopRecognition() {
 
 //Parsing function
 function parseMasterTranscript() {
-
-	//End recording
-	stopRecognition();
-
-	//Get codebook (JSON)
-	getCodebook();
-
-	//Convert JSON to js object
-
-	
+		
 	//Test Code for code book
 	var testArr = ["cause", "effect", "science"];
 	var tcBook = [];
@@ -141,9 +132,38 @@ function writeCodebookDropdown() {
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() { 
 		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-			document.getElementById("codebookDropdown").innerHTML = this.responseText;
+			document.getElementById("divCodebookDropdown").innerHTML = this.responseText;
 		}            
 	}
 	xmlHttp.open("GET", "listenerServlet?event=writeCodebookDropdown", true); 
 	xmlHttp.send(null);
+}
+
+
+
+function createNewSession() {
+	//Get sessionName
+	var sessionName = document.getElementById("sessionNameInput").value;
+	removeCustomAlert();
+
+	//Get codebookID
+	var codebookID = document.getElementById("codebookDropdown").value;
+
+	//Create params
+	var params = "codebookID=" + codebookID + "&sessionName=" + sessionName;
+
+        //Request
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+			if (this.responseText == "success") {
+				alert("created!");
+			} else {
+				alert("failure");
+			}
+                }
+        };
+        xhttp.open("POST", "listenerServlet?event=createNewSession", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(params);
 }

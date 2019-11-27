@@ -37,8 +37,17 @@ public class ListenerServlet extends HttpServlet {
 			String pageEvent = request.getParameter("event");
 			if (pageEvent != null) {
 				switch(pageEvent) {
-					case "getCodebook":
-						int a = 0;
+					case "createNewSession":
+						//Get post variables
+						String sessionName = request.getParameter("sessionName");
+						int codebookID = Integer.parseInt(request.getParameter("codebookID"));
+
+						//Create new session
+						SessionFactory objSessionFactory = new SessionFactory();
+						objSessionFactory.createSession(sessionName, objAccount.accountID, codebookID);
+						objSessionFactory = null;
+						break;
+						
 						
 				}
 			}	

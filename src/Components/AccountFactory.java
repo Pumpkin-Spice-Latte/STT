@@ -38,6 +38,7 @@ public class AccountFactory {
 		} catch(Exception e) {					
 			//Rollback
 			objConnection.rollback();
+			throw new Exception("Error creating account");
 			
 		} finally {			
 			//Destroy connection
@@ -68,7 +69,8 @@ public class AccountFactory {
 			setAccountObjectProperties(objAccount, objRS);							
 			
 		} catch(Exception e) {			
-			//Do nothing					
+			//Do nothing	
+			throw new Exception("Error logging in");				
 		} finally {			
 			//Destroy connection
 			objConnection = null;

@@ -23,12 +23,12 @@
 			</div>
 			<div class="main col-xs-12 col-md-12 col-lg-12" align="center">
 			
-				<div id="codebookDropdown"></div><br>
+				<div id="divCodebookDropdown"></div><br>
 				<div class="input">
 					<textarea class="textInput" id="textbox" rows="15" cols="30"></textarea>
 				</div>         
 				<button id="btnStart" onclick="startRecognition()" title="Start">Start</button>
-				<button id="btnStop" onClick="parseMasterTranscript()" title="Stop">Stop</button>
+				<button id="btnStop" onClick="sessionAlert()" title="Stop">Stop</button>
 				<p id="message">Press the Start button</p>
 				
 			    

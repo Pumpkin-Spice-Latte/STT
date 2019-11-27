@@ -51,6 +51,7 @@ public class CodebookDAO {
 		if (codebookID != 0) {
 			SQL += " AND CODEBOOK_ID = ?";
 			objPreparedStatement = objConnection.prepareStatement(SQL);
+			objPreparedStatement.setInt(1, accountID);	
 			objPreparedStatement.setInt(2, codebookID);					
 		} else {
 			objPreparedStatement = objConnection.prepareStatement(SQL);

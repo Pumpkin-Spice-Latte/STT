@@ -113,7 +113,7 @@ function saveWord(select) {
 			y.value = "";
 		}
 		else {
-        	alert("Error", "Words can only be lowercase letters.");
+        		alert("Error", "Words can only be lowercase letters.");
 		}
 	}
 	else {
@@ -122,7 +122,7 @@ function saveWord(select) {
 			x.value ="";
 		}
 		else {
-        	alert("Error", "Words can only be lowercase letters.");
+        		alert("Error", "Words can only be lowercase letters.");
 		}
 	}
 
