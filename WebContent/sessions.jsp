@@ -11,12 +11,17 @@
 </head>
 
 <body onload="writeSessionDropdown()">
-	
-        <div id="divSessionDropdown" align="center">																
-        </div>
-        <div id="divSessionDetailsTable"  align="center">																
-        </div>
-	
+	<div class="container-fluid">
+		<div class="title col-xs-12 col-md-12 col-lg-12" align="center">
+			<h1 id="font2" align="center">Speech2Teach Listening System</h1>
+		</div>
+		<div class="main col-xs-12 col-md-12 col-lg-12" align="center" style="padding-bottom: 40px;">
+	        <div id="divSessionDropdown" align="center" style="padding-bottom: 40px;">																
+	        </div>
+	        <div id="divSessionDetailsTable" align="center">																
+	        </div>
+	    </div>
+	</div>
 </body>
 
 </html>
