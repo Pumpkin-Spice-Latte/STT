@@ -99,6 +99,8 @@ function deleteCodebookAlert() {
 	btnYes.appendChild(d.createTextNode("Yes"));
 	btnYes.href = "#";
 	btnYes.focus();
+	btnYes.style.float = "left";
+	btnYes.style.marginLeft = "60px";
 	btnYes.onclick = function() { removeCustomAlert();return false; }
 	
 	btnNo = alertObj.appendChild(d.createElement("a"));
@@ -106,6 +108,8 @@ function deleteCodebookAlert() {
 	btnNo.appendChild(d.createTextNode("No"));
 	btnNo.href = "#";
 	btnNo.focus();
+	btnNo.style.float = "right";
+	btnNo.style.marginRight = "60px";
 	btnNo.onclick = function() { removeCustomAlert();return false; }
 
 	alertObj.style.display = "block";

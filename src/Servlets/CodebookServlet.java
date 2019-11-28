@@ -55,7 +55,6 @@ public class CodebookServlet extends HttpServlet {
 						out.append(writeCodebookDetailsTable(Integer.parseInt(request.getParameter("codebookID"))));
 						out.close();	
 						break;
-												
 				}
 			}	
 
@@ -146,6 +145,7 @@ public class CodebookServlet extends HttpServlet {
 		str.append("</div><br>");
 		str.append("<div align = \"center\" style = \"padding-top: 5px;\">");
 		str.append("	<button style=\"color: red;\" onclick = \"deleteCodebookAlert()\">Delete Codebook</button>");
+		str.append("	<input id = 'currentCodebookID' type = 'hidden' value = '" + codebookID + "'>");
 		
 
 		return str.toString();

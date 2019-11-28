@@ -138,6 +138,14 @@ td, th {
 	text-align: center;
 }
 
+button, select {
+	font-family: "Lucida Sans Unicode";
+	border-radius: 5px;
+	background-color: white;
+	border: none;
+	padding: 5px;
+}
+
 tr:nth-child(odd) {
 	background-color: white;
 }
