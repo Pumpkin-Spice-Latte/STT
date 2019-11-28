@@ -34,8 +34,7 @@ recognition.onresult = function(event) {
  
 //On start
 recognition.onstart = function() { 
-	tempCount += 1;
-  displayListenerMessage("Voice recog started" + tempCount)
+  displayListenerMessage("Voice recog started");
 }
 
 //On end
@@ -52,9 +51,18 @@ recognition.onerror = function(event) {
 }
  
 //Start recognition
-function startRecognition() {	
-	Content += ' '; 	
-	recognition.start();
+function startRecognition() {
+	x = document.getElementById("codebookDropdown");
+	if (x.value == -1) {
+		alert("Error", "Please select a codebook.");
+	}
+	else {
+		document.getElementById("btnStart").style.display = "none";
+		x.disabled = "true";
+		x.style.backgroundColor = "#cccccc";
+		Content += ' '; 	
+		recognition.start();
+	}
 }
 
 //Stop recognition

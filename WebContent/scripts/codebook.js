@@ -6,6 +6,10 @@ function sendHttpPostRequest(URL, params) {
                         if(this.responseText == "success") {
                                 
                                 alert("Success", "codebook successfully added!");
+                                document.getElementById("codebookName").value = "";
+                                document.getElementById("codebookWord").value = "";
+                                document.getElementById("codebookEndWord").value = "";
+                                document.getElementById("codebookWords").innerHTML = "";
                                 
                         } else {
                                 
