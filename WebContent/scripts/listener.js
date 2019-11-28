@@ -66,16 +66,25 @@ function stopRecognition() {
 //Parsing function
 function parseMasterTranscript(jsonString) {
 	//Get array of codebookDetail objects
-	var codebookDetailObjArray = json.parse(jsonString);
-		
-	//Test Code for code book
-	var testArr = ["cause", "effect", "science"];
-	var tcBook = [];
-	for(var i = 0; i < testArr.length; i++)
-	{
-		var codeWord = { str: testArr[i], count: 0, endStr: ""};
-		tcBook.push[codeWord];
+	var tcBook = JSON.parse(jsonString);
+	masterTranscript = "blue yellow red blue blue red red grab a brush and paint";
+	
+	//Create Countbook to be sent to server
+	var masterCountbook = [];
+	for(var j = 0; j < tcBook.length; j++) {
+		var tempCountbook = { detailID: tcBook[j].detailID, count : 0 };
+		masterCountbook.push(tempCountbook);
 	}
+
+	//var countBook = [];
+	//Test Code for code book
+	// var testArr = ["cause", "effect", "science"];
+	// var tcBook = [];
+	// for(var i = 0; i < testArr.length; i++)
+	// {
+	// 	var codeWord = { str: testArr[i], count: 0, endStr: ""};
+	// 	tcBook.push[codeWord];
+	// }
 	
 	//Master Transcript check against code book
 	var MT = masterTranscript.split(" "); 
@@ -83,26 +92,36 @@ function parseMasterTranscript(jsonString) {
 	{
 		for(var j = 0; j < tcBook.length; j++) //Test each element of MT against cBook
 		{
-			if(MT[i] == tcBook[j].str) //If there is a match
+			if(MT[i] == tcBook[j].startWord) //If there is a match
 			{
-				if(tcBook[j].endStr) //If this cBook entry is a phrase
+				if(tcBook[j].endWord) //If this cBook entry is a phrase
 				{
 					for(var h = i + 1; h < i + 10; h++) //Check the next 10 words 
 					{
-						if(MT[h] == tcBook[j].endStr) //Check if ending keyword is here.
+						if(MT[h] == tcBook[j].endWord) //Check if ending keyword is here.
 						{
-							tcBook[j].count += 1; //if so, increment count.
-							break;
+							//tcBook[j].count += 1; //if so, increment count.
+							//Iterate through mastercountbook to find correct detailID
+							for(var z = 0; z < masterCountbook.length; z++) {
+								if (masterCountbook[z].detailID == tcBook[j].detailID)
+									masterCountbook[z].count += 1;								
+							}
+							break;							
 						}
 					}
 				}
 				else
-				{
-					tcBook[j].count += 1; //If not phrase, go ahead and increment count.
+				{					
+					for(var z = 0; z < masterCountbook.length; z++) {
+						if (masterCountbook[z].detailID == tcBook[j].detailID)
+							masterCountbook[z].count += 1;								
+					}
 				}
 			}
 		}
 	}
+	console.log(tcBook);
+	console.log(masterCountbook);
 }
 
 
