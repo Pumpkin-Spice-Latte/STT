@@ -7,8 +7,7 @@ import java.sql.SQLException;
 
 public class AccountFactory {
 
-	private void setAccountObjectProperties(Account objAccount, ResultSet objRS) throws SQLException {
-		objRS.next();
+	private void setAccountObjectProperties(Account objAccount, ResultSet objRS) throws SQLException {		
 		objAccount.accountID = objRS.getInt("account_id");
 		objAccount.username = objRS.getString("username");					
 	}
@@ -66,6 +65,7 @@ public class AccountFactory {
 			ResultSet objRS = objAccountDAO.getAccountByUsernameAndPassword(username, password);
 			
 			//Set object properties
+			objRS.next();
 			setAccountObjectProperties(objAccount, objRS);							
 			
 		} catch(Exception e) {			

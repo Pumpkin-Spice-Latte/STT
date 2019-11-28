@@ -17,7 +17,7 @@
 		</div>
 		<div class="main flex col-xs-12 col-md-12 col-lg-12" align="center" style="padding-bottom: 40px;">
 			<div class="homeButton col-lg-4">
-			<a href="listener.jsp" target="_blank">View Past Sessions</a></div>
+			<a href="sessions.jsp" target="_blank">View Past Sessions</a></div>
 			<div class="homeButton col-lg-4" style="margin-left: 70px; margin-right: 70px">
 			<a href="listener.jsp" target="_blank">Start Recording</a></div>
 			<div class="homeButton col-lg-4">

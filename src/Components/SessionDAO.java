@@ -42,8 +42,22 @@ public class SessionDAO {
 		} else {
 			objPreparedStatement = objConnection.prepareStatement(SQL);
 			objPreparedStatement.setInt(1, accountID);			
-                }
-                													                								
+                }                													                								
+		//Return result set
+		return objPreparedStatement.executeQuery();		
+        }
+
+	public ResultSet getSessionCounts(int sessionID) throws Exception {	                
+		//Build SQL
+		String SQL = "SELECT S.SESSION_ID, S.DETAIL_ID, S.COUNT, D.START_WORD, D.END_WORD " +
+			     "   FROM SESSION_COUNTS S " +
+			     "        INNER JOIN CODEBOOK_DTL D ON D.DETAIL_ID = S.DETAIL_ID " + 
+			     "  WHERE SESSION_ID = ? ";
+			     
+		//Prepare statement
+		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
+		objPreparedStatement.setInt(1, sessionID);	
+			             													                								
 		//Return result set
 		return objPreparedStatement.executeQuery();		
         }
