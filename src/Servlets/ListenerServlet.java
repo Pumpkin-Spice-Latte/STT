@@ -2,6 +2,7 @@ package Servlets;
 
 import Components.*;
 
+import com.google.gson.Gson; 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -46,9 +47,7 @@ public class ListenerServlet extends HttpServlet {
 						SessionFactory objSessionFactory = new SessionFactory();
 						objSessionFactory.createSession(sessionName, objAccount.accountID, codebookID);
 						objSessionFactory = null;
-						break;
-						
-						
+						break;												
 				}
 			}	
 
@@ -75,17 +74,24 @@ public class ListenerServlet extends HttpServlet {
 			//Get querystring to determine page event
 			String pageEvent = request.getParameter("event");
 			if (pageEvent != null) {
-				switch(pageEvent) {
-					case "init":
-					        response.sendRedirect("listener.jsp");  	
-						break;
-					
+				switch(pageEvent) {										
 					case "writeCodebookDropdown":
 						//Write codebook dropdown
 						out.append(writeCodebookDropdown(objAccount.accountID));											
+						break;		
+
+					case "getCodebook":
+						//Get codebookID
+						int codebookID = Integer.parseInt(request.getParameter("codebookID"));
+						List<CodebookDetail> listCodebookDetails = new CodebookFactory().getCodeboodDtlByCodebookID(codebookID);
+
+						//Serialize object to JSON
+						String json = new Gson().toJson(listCodebookDetails);						
+						out.append(json);
 						break;
+
 				}
-			}				
+			}	
 
 		} catch (Exception e) {
 			out.append("error");

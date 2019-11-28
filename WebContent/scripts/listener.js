@@ -64,7 +64,9 @@ function stopRecognition() {
  
 
 //Parsing function
-function parseMasterTranscript() {
+function parseMasterTranscript(jsonString) {
+	//Get array of codebookDetail objects
+	var codebookDetailObjArray = json.parse(jsonString);
 		
 	//Test Code for code book
 	var testArr = ["cause", "effect", "science"];
@@ -99,31 +101,7 @@ function parseMasterTranscript() {
 				}
 			}
 		}
-	}
-	
-	//Display code book before we get db functionality?
-	
-	
-}
-
-
-
-
-function getCodebook() {
-	//Get params
-	var params = "test=test";
-
-
-        //Request
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                		sessionAlert();
-                }
-        };
-        xhttp.open("POST", "listenerServlet?event=getCodebook", true);
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send(params);
+	}				
 }
 
 
@@ -158,6 +136,10 @@ function createNewSession() {
                 if (this.readyState == 4 && this.status == 200) {
 			if (this.responseText == "success") {
 				alert("created!");
+
+				//Get codebook details
+				getCodebook();
+
 			} else {
 				alert("failure");
 			}
@@ -166,4 +148,25 @@ function createNewSession() {
         xhttp.open("POST", "listenerServlet?event=createNewSession", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(params);
+}
+
+
+function getCodebook() {
+	//Get codebookID
+	var codebookID = document.getElementById("codebookDropdown").value;
+
+	//Request	
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() { 
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+			if (this.responseText != "error") {
+				var jsonResponse = this.responseText;
+				parseMasterTranscript(jsonResponse);
+			} else {
+				alert("Error retrieving codebook");
+			}
+		}            
+	}
+	xmlHttp.open("GET", "listenerServlet?event=getCodebook&codebookID=" + codebookID, true); 
+	xmlHttp.send(null);
 }
