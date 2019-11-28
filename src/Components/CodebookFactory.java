@@ -53,7 +53,7 @@ public class CodebookFactory {
 					startWord = detail;
 				}
 				if (startWord.trim().length() > 0)
-					objCodebookDAO.insertIntoCodebookDtl(codebookHeaderID, startWord, endWord);
+					objCodebookDAO.insertIntoCodebookDtl(codebookHeaderID, startWord.trim(), endWord.trim());
 			}	
 			objConnection.commit(); //Final commit
 
