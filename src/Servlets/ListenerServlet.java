@@ -2,7 +2,8 @@ package Servlets;
 
 import Components.*;
 
-import com.google.gson.Gson; 
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -43,11 +44,24 @@ public class ListenerServlet extends HttpServlet {
 						String sessionName = request.getParameter("sessionName");
 						int codebookID = Integer.parseInt(request.getParameter("codebookID"));
 
-						//Create new session
-						SessionFactory objSessionFactory = new SessionFactory();
-						objSessionFactory.createSession(sessionName, objAccount.accountID, codebookID);
+						//Create new session		
+						SessionFactory objSessionFactory = new SessionFactory();				
+						Session objSession =  objSessionFactory.createSession(sessionName, objAccount.accountID, codebookID);
 						objSessionFactory = null;
-						break;												
+						out.append(Integer.toString(objSession.sessionID));
+						out.close(); //must return only sessionID
+						break;		
+
+					case "insertSessionCounts":
+						int sessionID = Integer.parseInt(request.getParameter("sessionID"));
+						String[] detailIDArray = request.getParameterValues("detailID");
+						String[] countArray = request.getParameterValues("count");
+						for (int i = 0; i < detailIDArray.length; i++) {
+							 SessionFactory objSessionFactory1 = new SessionFactory();
+							 objSessionFactory1.insertIntoSessionCounts(sessionID, Integer.parseInt(detailIDArray[i]), Integer.parseInt(countArray[i]));
+							 objSessionFactory1 = null;
+						}
+						break;	
 				}
 			}	
 

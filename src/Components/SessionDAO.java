@@ -27,6 +27,20 @@ public class SessionDAO {
 		objPreparedStatement.executeUpdate();		
 	}	
 	
+	public void insertIntoSessionCounts(int sessionID, int detailID, int count) throws Exception {	
+		//Build SQL
+		String SQL = "INSERT INTO SESSION_COUNTS (SESSION_ID, DETAIL_ID, COUNT) VALUES (?,?,?)";
+		
+		//Create statement
+		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
+		objPreparedStatement.setInt(1, sessionID);
+                objPreparedStatement.setInt(2, detailID);
+                objPreparedStatement.setInt(3, count);
+								
+		//Execute statement
+		objPreparedStatement.executeUpdate();		
+	}	
+
 	public ResultSet getSessions(int accountID, int codebookID) throws Exception {	
                 //Initialize prepared statement
                 PreparedStatement objPreparedStatement = null;

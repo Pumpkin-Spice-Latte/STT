@@ -64,6 +64,35 @@ public class SessionFactory {
 			return objSession;
 		}			
 	}
+
+	@SuppressWarnings("finally")
+	public void insertIntoSessionCounts(int sessionID, int detailID, int count) throws Exception {
+		//Instantiate objects used in finally clause
+		Connection objConnection = null;				
+		
+		try {					
+			//Get connection
+			objConnection = dbConnection.getConnection();
+			
+			//Instantiate DAO object
+			SessionDAO objSessionDAO = new SessionDAO(objConnection);
+			
+			//Update database
+			objSessionDAO.insertIntoSessionCounts(sessionID, detailID, count);					
+						
+			//Commit
+			objConnection.commit();			
+			
+		} catch(Exception e) {					
+			//Rollback
+			objConnection.rollback();
+			throw new Exception("Error");
+			
+		} finally {			
+			//Destroy connection
+			objConnection = null;			
+		}			
+	}
 		
 	@SuppressWarnings("finally")
 	public List<Session> getSessions(int accountID, int codebookID) throws SQLException {
@@ -131,7 +160,9 @@ public class SessionFactory {
 			
 			//Return Session
 			return listSessionCounts;
-		}			
+		}
+		
+		
         }
         
 

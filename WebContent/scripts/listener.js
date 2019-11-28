@@ -83,16 +83,6 @@ function parseMasterTranscript(jsonString) {
 		var tempCountbook = { detailID: tcBook[j].detailID, count : 0 };
 		masterCountbook.push(tempCountbook);
 	}
-
-	//var countBook = [];
-	//Test Code for code book
-	// var testArr = ["cause", "effect", "science"];
-	// var tcBook = [];
-	// for(var i = 0; i < testArr.length; i++)
-	// {
-	// 	var codeWord = { str: testArr[i], count: 0, endStr: ""};
-	// 	tcBook.push[codeWord];
-	// }
 	
 	//Master Transcript check against code book
 	var MT = masterTranscript.split(" "); 
@@ -128,8 +118,8 @@ function parseMasterTranscript(jsonString) {
 			}
 		}
 	}
-	console.log(tcBook);
-	console.log(masterCountbook);
+	//Send request to update DB
+	submitMasterCountbook(masterCountbook);
 }
 
 
@@ -147,6 +137,7 @@ function writeCodebookDropdown() {
 
 
 
+var lastCreatedSessionID;
 function createNewSession() {
 	//Get sessionName
 	var sessionName = document.getElementById("sessionNameInput").value;
@@ -162,12 +153,9 @@ function createNewSession() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-			if (this.responseText == "success") {
-				alert("created!");
-
-				//Get codebook details
+			if (this.responseText != "error") {
+				lastCreatedSessionID = this.responseText;				
 				getCodebook();
-
 			} else {
 				alert("failure");
 			}
@@ -197,4 +185,27 @@ function getCodebook() {
 	}
 	xmlHttp.open("GET", "listenerServlet?event=getCodebook&codebookID=" + codebookID, true); 
 	xmlHttp.send(null);
+}
+
+function submitMasterCountbook(masterCountbook) {
+	//Build params
+	var params = "sessionID=" + lastCreatedSessionID;
+	for(var z = 0; z < masterCountbook.length; z++) {		
+		params = params + "&detailID=" + masterCountbook[z].detailID + "&count=" + masterCountbook[z].count;
+	}	
+
+	//Request
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+			if (this.responseText == "success") {
+				window.location.href = "sessionServlet?event=writeSessionDetailsTable&sessionID=" + lastCreatedSessionID;
+			} else {
+				alert("failure");
+			}
+                }
+        };
+        xhttp.open("POST", "listenerServlet?event=insertSessionCounts", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(params);
 }
