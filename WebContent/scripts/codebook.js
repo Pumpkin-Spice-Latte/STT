@@ -47,16 +47,22 @@ function writeCodebookDetails(codebookID) {
 }
 
 function createCodebook() {
-        var codebookWords = document.getElementById("codebookWords").innerHTML;
-        var codebookName = document.getElementById("codebookName").value;
+	var codebookWords = document.getElementById("codebookWords").innerHTML;
+    var codebookName = document.getElementById("codebookName").value;
         
-        if (codebookWords === "" || codebookName === "") {
-        	alert("Error", "One of the fields is empty!");
-        }
-        else {
-        	var params = "codebookName=" + codebookName + "&codebookWords=" + codebookWords;
-        	sendHttpPostRequest("codebookServlet?event=addCodebook", params);
-        }
+    if (codebookWords === "" || codebookName === "") {
+    	alert("Error", "One of the fields is empty!");
+    }
+    else {
+        var params = "codebookName=" + codebookName + "&codebookWords=" + codebookWords;
+        sendHttpPostRequest("codebookServlet?event=addCodebook", params);
+    }
+}
+
+function deleteCodebook() {
+	var codebookID = document.getElementId("currentCodebookID").value;
+	var params = "codebookID=" + codebookID;
+	sendHttpPostRequest("codebookServlet?event=deleteCodebook", params);
 }
 
 function showView() {

@@ -92,6 +92,7 @@ function parseMasterTranscript(jsonString) {
 						if(MT[h] == tcBook[j].endStr) //Check if ending keyword is here.
 						{
 							tcBook[j].count += 1; //if so, increment count.
+							break;
 						}
 					}
 				}
@@ -101,7 +102,7 @@ function parseMasterTranscript(jsonString) {
 				}
 			}
 		}
-	}				
+	}
 }
 
 
