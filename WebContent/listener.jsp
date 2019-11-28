@@ -30,6 +30,9 @@
 				<button id="btnStart" onclick="startRecognition()" title="Start">Start</button>
 				<button id="btnStop" onClick="sessionAlert()" title="Stop">Stop</button>
 				<p id="message">Press the Start button</p>
+				<div class="homeButton" style="margin-top: 80px;">
+					<a href="home.jsp">Back to Homepage</a>
+				</div>	
 				
 			    
 	

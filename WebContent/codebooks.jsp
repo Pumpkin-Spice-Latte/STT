@@ -16,7 +16,7 @@
 		<div class="title col-xs-12 col-md-12 col-lg-12" align="center">
 			<h1 id="font2" align="center">Speech2Teach Listening System</h1>
 		</div>
-		<div class="main flex col-xs-12 col-md-12 col-lg-12" align="center" style="padding-bottom: 40px;">
+		<div class="main flex col-xs-12 col-md-12 col-lg-12" align="center">
 			<div>
 				<button onclick="showView()" class="homeButton col-lg-6" style="margin-right: 80px; margin-left: 80px;">
 					<p>View Codebooks</p>
@@ -62,7 +62,10 @@
 						<button id="submitCodebook" onclick="createCodebook()">Finish and Create</button>
 					</div>					
 				</div>
-			</div>											
+				<div class="homeButton" style="margin-top: 160px;">
+					<a href="home.jsp">Back to Homepage</a>
+				</div>	
+			</div>										
 		</div>								
 	</div>
 </body>

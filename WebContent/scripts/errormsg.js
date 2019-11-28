@@ -73,7 +73,7 @@ function sessionAlert() {
 	
 }
 
-function deleteCodebookAlert() {
+function deleteCodebookAlert(whatWeDeleting) {
 	var ALERT_TITLE = "Hold up!";
 	d = document;
 
@@ -92,7 +92,7 @@ function deleteCodebookAlert() {
 	h1.appendChild(d.createTextNode(ALERT_TITLE));
 
 	msg = alertObj.appendChild(d.createElement("p"));
-	msg.innerHTML = "You sure you want to delete this session? This cannot be undone.";
+	msg.innerHTML = "You sure you want to delete this " + whatWeDeleting + "? This cannot be undone.";
 
 	btnYes = alertObj.appendChild(d.createElement("a"));
 	btnYes.id = "deleteSession";

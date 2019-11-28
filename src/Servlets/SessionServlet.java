@@ -118,7 +118,7 @@ public class SessionServlet extends HttpServlet {
 		str.append("</table>");
 		str.append("</div><br>");
 		str.append("<div align = \"center\" style = \"padding-top: 5px;\">");
-		str.append("	<button style=\"color: red;\" onclick = \"deleteCodebookAlert()\">Delete Codebook</button>");
+		str.append("	<button style=\"color: red;\" onclick = \"deleteCodebookAlert('session')\">Delete Session</button>");
 		
 
 		return str.toString();
