@@ -76,7 +76,7 @@ function stopRecognition() {
 function parseMasterTranscript(jsonString) {
 	//Get array of codebookDetail objects
 	var tcBook = JSON.parse(jsonString);
-	masterTranscript = "blue yellow red blue blue red red grab a brush and paint";
+	var tcBook = JSON.parse(jsonString);	
 	
 	//Create Countbook to be sent to server
 	var masterCountbook = [];
