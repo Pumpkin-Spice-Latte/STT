@@ -12,8 +12,8 @@ var Content = '';
 
 var tempCount = 0;
 
-
 var masterTranscript = "";
+var finalStop = false;
 
 //Set property
 recognition.continuous = true;
@@ -40,14 +40,14 @@ recognition.onstart = function() {
 //On end
 recognition.onend = function() {
 	displayListenerMessage('Speech recognition service disconnected');
-	recognition.start();
+	if (!finalStop)
+		recognition.start();
 }
 
 //On error
 recognition.onerror = function(event) {
-  if(event.error == 'no-speech') {
-	  displayListenerMessage("No speech, try again")  
-  }
+  finalStop = true;
+  alert("Error", "Unable to record. Please contact support.");
 }
  
 //Start recognition
@@ -67,6 +67,7 @@ function startRecognition() {
 
 //Stop recognition
 function stopRecognition() {
+	finalStop = true;
 	recognition.stop();
 }
  
@@ -139,6 +140,9 @@ function writeCodebookDropdown() {
 
 var lastCreatedSessionID;
 function createNewSession() {
+	//Stop recognition
+	stopRecognition();
+
 	//Get sessionName
 	var sessionName = document.getElementById("sessionNameInput").value;
 	removeCustomAlert();
@@ -199,7 +203,7 @@ function submitMasterCountbook(masterCountbook) {
         xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
 			if (this.responseText == "success") {
-				window.location.href = "sessionServlet?event=writeSessionDetailsTable&sessionID=" + lastCreatedSessionID;
+				window.location.href = "sessions.jsp";
 			} else {
 				alert("failure");
 			}
