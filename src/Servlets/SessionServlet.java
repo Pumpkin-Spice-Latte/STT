@@ -142,7 +142,7 @@ public class SessionServlet extends HttpServlet {
 		str.append("</table>");
 		str.append("</div><br>");
 		str.append("<div align = \"center\" style = \"padding-top: 5px;\">");
-		str.append("	<button style=\"color: red;\" onclick = \"deleteCodebookAlert('session')\">Delete Session</button>");
+		str.append("	<button style=\"color: red;\" onclick = \"deleteAlert('session' , deleteSession)\">Delete Session</button>");
 		str.append("	<input id='currentSessionID' type='hidden' value='" + sessionID + "'>");
 
 		return str.toString();

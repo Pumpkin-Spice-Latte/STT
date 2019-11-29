@@ -39,8 +39,33 @@ public class CodebookDAO {
 								
 		//Execute statement
 		objPreparedStatement.executeUpdate();		
-	}	
+	}
 	
+	public void deleteFromCodebookDtl(int codebookID) throws Exception {	
+		//Build SQL
+		String SQL = "DELETE FROM CODEBOOK_DTL WHERE CODEBOOK_ID = ?";
+		
+		//Create statement
+		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
+		objPreparedStatement.setInt(1, codebookID);		
+								
+		//Execute statement
+		objPreparedStatement.executeUpdate();		
+	}
+	
+	public void deleteFromCodebookHdr(int codebookID) throws Exception {	
+		//Build SQL
+		String SQL = "DELETE FROM CODEBOOK_HDR WHERE CODEBOOK_ID = ?";
+		
+		//Create statement
+		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
+		objPreparedStatement.setInt(1, codebookID);		
+								
+		//Execute statement
+		objPreparedStatement.executeUpdate();		
+	}
+	
+
 	public ResultSet getCodebookHdrByAccountIDAndCodebookID(int accountID, int codebookID) throws Exception {	
 		//Initialize preparedStatement
 		PreparedStatement objPreparedStatement = null;		

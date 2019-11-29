@@ -22,6 +22,32 @@ function sendHttpPostRequest(URL, params) {
         xhttp.send(params);
 }
 
+function deleteCodebook() {
+	//Remove alert
+	removeCustomAlert();
+
+	//Get params
+	var params = "codebookID=" + document.getElementById("currentCodebookID").value;
+
+        //Request
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                        if(this.responseText == "success") {                                
+				alert("Success", "codebook successfully deleted!");  
+				writeCodebookDropdown();
+				document.getElementById("codebookDetailsTable").innerHTML = "";
+
+                        } else {                                
+                                alert("Error", "Error processing request.");
+                        } 
+                }
+        };
+        xhttp.open("POST", "codebookServlet?event=deleteCodebook", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(params);
+}
+
 function writeCodebookDropdown() {
 	//Request	
 	var xmlHttp = new XMLHttpRequest();
@@ -52,21 +78,15 @@ function writeCodebookDetails(codebookID) {
 
 function createCodebook() {
 	var codebookWords = document.getElementById("codebookWords").innerHTML;
-    var codebookName = document.getElementById("codebookName").value;
-        
-    if (codebookWords === "" || codebookName === "") {
-    	alert("Error", "One of the fields is empty!");
-    }
-    else {
-        var params = "codebookName=" + codebookName + "&codebookWords=" + codebookWords;
-        sendHttpPostRequest("codebookServlet?event=addCodebook", params);
-    }
-}
-
-function deleteCodebook() {
-	var codebookID = document.getElementId("currentCodebookID").value;
-	var params = "codebookID=" + codebookID;
-	sendHttpPostRequest("codebookServlet?event=deleteCodebook", params);
+	var codebookName = document.getElementById("codebookName").value;
+		
+	if (codebookWords === "" || codebookName === "") {
+		alert("Error", "One of the fields is empty!");
+	}
+	else {
+		var params = "codebookName=" + codebookName + "&codebookWords=" + codebookWords;
+		sendHttpPostRequest("codebookServlet?event=addCodebook", params);
+	}
 }
 
 function showView() {

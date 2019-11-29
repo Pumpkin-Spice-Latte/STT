@@ -73,7 +73,7 @@ function sessionAlert() {
 	
 }
 
-function deleteCodebookAlert(whatWeDeleting) {
+function deleteAlert(whatWeDeleting, yesCallback) {
 	var ALERT_TITLE = "Hold up!";
 	d = document;
 
@@ -101,7 +101,7 @@ function deleteCodebookAlert(whatWeDeleting) {
 	btnYes.focus();
 	btnYes.style.float = "left";
 	btnYes.style.marginLeft = "60px";
-	btnYes.onclick = function() { deleteCurrentSession();return false; }
+	btnYes.onclick = function() { yesCallback();return false; }
 	
 	btnNo = alertObj.appendChild(d.createElement("a"));
 	btnNo.id = "closeBtn";

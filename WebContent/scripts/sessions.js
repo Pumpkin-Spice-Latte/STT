@@ -29,7 +29,7 @@ function writeSessionDetailsTable(sessionID) {
 }
 
 
-function deleteCurrentSession() {
+function deleteSession() {
 	//Remove alert
 	removeCustomAlert();
 

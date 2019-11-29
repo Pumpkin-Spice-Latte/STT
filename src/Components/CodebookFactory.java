@@ -69,6 +69,44 @@ public class CodebookFactory {
 	}
 		
 	@SuppressWarnings("finally")
+	public void deleteCodebook(int codebookID, int accountID) throws Exception {
+		//Instantiate objects used in finally clause
+		Connection objConnection = null;				
+		
+		try {					
+			//Get connection
+			objConnection = dbConnection.getConnection();
+			
+			//Instantiate DAO object
+			CodebookDAO objCodebookDAO = new CodebookDAO(objConnection);
+			
+			//delete all sessions tied to codebookID
+			SessionFactory objSessionFactory = new SessionFactory();
+			List<Session> listSessions = objSessionFactory.getSessions(accountID, codebookID);
+			for (Session objSession : listSessions) {
+				objSessionFactory.deleteSession(objSession.sessionID);
+			}			
+			objConnection.commit(); 
+
+			//delete codebook detail then header
+			objCodebookDAO.deleteFromCodebookDtl(codebookID);				
+			objConnection.commit(); 
+			objCodebookDAO.deleteFromCodebookHdr(codebookID);
+			objConnection.commit();			
+
+		} catch(Exception e) {					
+			//Rollback
+			objConnection.rollback();
+			throw new Exception("Error creating codebook");
+			
+		} finally {			
+			//Destroy connection
+			objConnection = null;			
+		}			
+	}
+
+
+	@SuppressWarnings("finally")
 	public List<CodebookHeader> getCodebookHdrByAccountIDAndCodebookID(int accountID, int codebookID) throws SQLException {
 		//Instantiate objects used in finally clause
 		Connection objConnection = null;		

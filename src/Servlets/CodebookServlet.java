@@ -44,10 +44,8 @@ public class CodebookServlet extends HttpServlet {
 						List<String> codebookDetails = Arrays.asList(temp);
 						String codebookName = request.getParameter("codebookName");
 
-						//Create codebook
-						CodebookFactory objCodebookFactory = new CodebookFactory();
-						objCodebookFactory.createCodebook(objAccount.accountID, codebookName, codebookDetails);
-						objCodebookFactory = null;							
+						//Create codebook						;
+						new CodebookFactory().createCodebook(objAccount.accountID, codebookName, codebookDetails);						
 						break;
 
 					case "writeCodebookDetailsTable":
@@ -55,6 +53,11 @@ public class CodebookServlet extends HttpServlet {
 						out.append(writeCodebookDetailsTable(Integer.parseInt(request.getParameter("codebookID"))));
 						out.close();	
 						break;
+
+					case "deleteCodebook":
+						int codebookID = Integer.parseInt(request.getParameter("codebookID"));
+						new CodebookFactory().deleteCodebook(codebookID, objAccount.accountID);
+						break;						
 				}
 			}	
 
@@ -144,7 +147,7 @@ public class CodebookServlet extends HttpServlet {
 		str.append("</table>");
 		str.append("</div><br>");
 		str.append("<div align = \"center\" style = \"padding-top: 5px;\">");
-		str.append("	<button style=\"color: red;\" onclick = \"deleteCodebookAlert('codebook')\">Delete Codebook</button>");
+		str.append("	<button style=\"color: red;\" onclick = \"deleteAlert('codebook', deleteCodebook)\">Delete Codebook</button>");
 		str.append("	<input id = 'currentCodebookID' type = 'hidden' value = '" + codebookID + "'>");
 		
 
