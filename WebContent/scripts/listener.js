@@ -75,7 +75,6 @@ function stopRecognition() {
 //Parsing function
 function parseMasterTranscript(jsonString) {
 	//Get array of codebookDetail objects
-	var tcBook = JSON.parse(jsonString);
 	var tcBook = JSON.parse(jsonString);	
 	
 	//Create Countbook to be sent to server
