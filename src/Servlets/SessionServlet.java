@@ -47,16 +47,7 @@ public class SessionServlet extends HttpServlet {
 						//Write details table
 						out.append(writeSessionDetailsTable(Integer.parseInt(request.getParameter("sessionID"))));
 						out.close();	
-						break;
-					// case "getCodebook":
-					// 	//Get codebookID
-					// 	int codebookID = Integer.parseInt(request.getParameter("codebookID"));
-					// 	List<Sess> listCodebookDetails = new CodebookFactory().getCodeboodDtlByCodebookID(codebookID);
-
-					// 	//Serialize object to JSON
-					// 	String json = new Gson().toJson(listCodebookDetails);						
-					// 	out.append(json);
-					// 	break;
+						break;					
 
 				}
 			}	                        
@@ -71,6 +62,39 @@ public class SessionServlet extends HttpServlet {
 		
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		try {
+			//Get account object
+			HttpSession session = request.getSession();  
+			Account objAccount = (Account) session.getAttribute("currentUser");
+
+			//Make sure user has acquired valid session
+			if (objAccount.accountID == 0)
+				throw new Exception();
+
+			//Get querystring to determine page event
+			String pageEvent = request.getParameter("event");
+			if (pageEvent != null) {
+				switch(pageEvent) {										
+					case "deleteSession":
+						int sessionID = Integer.parseInt(request.getParameter("sessionID"));
+						new SessionFactory().deleteSession(sessionID);
+						break;		                                        				
+
+				}
+			}	                        
+
+			out.append("success");
+		} catch (Exception e) {
+			out.append("error");
+		} finally {
+			out.close();
+		}						
+	}
+
+
+	
 
 
 	private String writeSessionDropdown(int accountID) throws SQLException {
@@ -119,7 +143,7 @@ public class SessionServlet extends HttpServlet {
 		str.append("</div><br>");
 		str.append("<div align = \"center\" style = \"padding-top: 5px;\">");
 		str.append("	<button style=\"color: red;\" onclick = \"deleteCodebookAlert('session')\">Delete Session</button>");
-		
+		str.append("	<input id='currentSessionID' type='hidden' value='" + sessionID + "'>");
 
 		return str.toString();
 	}

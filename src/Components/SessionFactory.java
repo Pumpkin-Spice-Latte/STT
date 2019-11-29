@@ -93,6 +93,35 @@ public class SessionFactory {
 			objConnection = null;			
 		}			
 	}
+
+	@SuppressWarnings("finally")
+	public void deleteSession(int sessionID) throws Exception {
+		//Instantiate objects used in finally clause
+		Connection objConnection = null;				
+		
+		try {					
+			//Get connection
+			objConnection = dbConnection.getConnection();
+			
+			//Instantiate DAO object
+			SessionDAO objSessionDAO = new SessionDAO(objConnection);
+			
+			//Update database
+			objSessionDAO.DeleteFromSessionCounts(sessionID);									
+			objConnection.commit();			
+			objSessionDAO.DeleteFromSessions(sessionID);
+			objConnection.commit();
+			
+		} catch(Exception e) {					
+			//Rollback
+			objConnection.rollback();
+			throw new Exception("Error");
+			
+		} finally {			
+			//Destroy connection
+			objConnection = null;			
+		}			
+	}
 		
 	@SuppressWarnings("finally")
 	public List<Session> getSessions(int accountID, int codebookID) throws SQLException {

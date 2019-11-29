@@ -101,7 +101,7 @@ function deleteCodebookAlert(whatWeDeleting) {
 	btnYes.focus();
 	btnYes.style.float = "left";
 	btnYes.style.marginLeft = "60px";
-	btnYes.onclick = function() { removeCustomAlert();return false; }
+	btnYes.onclick = function() { deleteCurrentSession();return false; }
 	
 	btnNo = alertObj.appendChild(d.createElement("a"));
 	btnNo.id = "closeBtn";

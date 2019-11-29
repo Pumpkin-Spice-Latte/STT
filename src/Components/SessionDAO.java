@@ -41,6 +41,32 @@ public class SessionDAO {
 		objPreparedStatement.executeUpdate();		
 	}	
 
+	public void DeleteFromSessionCounts(int sessionID) throws Exception {	
+		//Build SQL
+		String SQL = "DELETE FROM SESSION_COUNTS WHERE SESSION_ID = ?";
+		
+		//Create statement
+		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
+		objPreparedStatement.setInt(1, sessionID);                
+								
+		//Execute statement
+		objPreparedStatement.executeUpdate();		
+	}	
+
+	
+	public void DeleteFromSessions(int sessionID) throws Exception {	
+		//Build SQL
+		String SQL = "DELETE FROM SESSION WHERE SESSION_ID = ?";
+		
+		//Create statement
+		PreparedStatement objPreparedStatement = objConnection.prepareStatement(SQL);
+		objPreparedStatement.setInt(1, sessionID);                
+								
+		//Execute statement
+		objPreparedStatement.executeUpdate();		
+	}
+
+
 	public ResultSet getSessions(int accountID, int codebookID) throws Exception {	
                 //Initialize prepared statement
                 PreparedStatement objPreparedStatement = null;
