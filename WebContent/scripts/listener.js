@@ -10,18 +10,11 @@ var Textbox = $('#textbox');
 var instructions = $('instructions'); 
 var Content = '';
 
-var tempCount = 0;
-
 var masterTranscript = "";
 var finalStop = false;
 
 //Set property
 recognition.continuous = true;
-
-//Display message
-function displayListenerMessage(message) {
-	document.getElementById("message").innerHTML = message;
-}
 
 //On result 
 recognition.onresult = function(event) { 
@@ -34,12 +27,11 @@ recognition.onresult = function(event) {
  
 //On start
 recognition.onstart = function() { 
-  displayListenerMessage("Voice recog started");
+  //display listening gif???
 }
 
 //On end
-recognition.onend = function() {
-	displayListenerMessage('Speech recognition service disconnected');
+recognition.onend = function() {	
 	if (!finalStop)
 		recognition.start();
 }
