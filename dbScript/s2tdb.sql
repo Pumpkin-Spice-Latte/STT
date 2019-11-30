@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2019 at 03:07 AM
+-- Generation Time: Nov 30, 2019 at 06:43 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -28,16 +28,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `accounts` (
 `account_id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL DEFAULT 'admin',
-  `password` varchar(255) DEFAULT 'password'
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+  `username` varchar(32) NOT NULL,
+  `password` varchar(64) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accounts`
 --
 
 INSERT INTO `accounts` (`account_id`, `username`, `password`) VALUES
-(14, 'gramtest', 'test');
+(14, 'gramtest', 'test'),
+(15, 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -50,36 +51,15 @@ CREATE TABLE IF NOT EXISTS `codebook_dtl` (
 `detail_id` int(11) NOT NULL,
   `start_word` varchar(50) NOT NULL,
   `end_word` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `codebook_dtl`
 --
 
 INSERT INTO `codebook_dtl` (`codebook_id`, `detail_id`, `start_word`, `end_word`) VALUES
-(13, 5, 'one', ''),
-(13, 6, ' two', ' three'),
-(14, 8, 'yay', ''),
-(14, 9, ' double', ' yay'),
-(14, 10, ' ', ''),
-(15, 11, 'one', ''),
-(15, 12, ' two', ' three!'),
-(15, 13, ' ', ''),
-(16, 14, 'one', ''),
-(16, 15, ' two', ' three'),
-(16, 16, ' four', ''),
-(16, 17, ' ', ''),
-(17, 18, 'one', ''),
-(17, 19, ' two', ' three'),
-(17, 20, ' four', ''),
-(17, 21, ' ', ''),
-(18, 22, 'one', ''),
-(18, 23, ' two', ' three'),
-(18, 24, ' ', ''),
-(19, 25, ' two', ' three'),
-(20, 26, 'one', ''),
-(20, 27, ' two', ' three'),
-(20, 28, ' four', '');
+(4, 6, 'star', ''),
+(4, 7, ' start', 'end');
 
 -- --------------------------------------------------------
 
@@ -91,21 +71,14 @@ CREATE TABLE IF NOT EXISTS `codebook_hdr` (
 `codebook_id` int(11) NOT NULL,
   `codebook_name` varchar(20) NOT NULL,
   `account_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `codebook_hdr`
 --
 
 INSERT INTO `codebook_hdr` (`codebook_id`, `codebook_name`, `account_id`) VALUES
-(13, 'testbook5', 14),
-(14, 'code', 14),
-(15, 'test34', 14),
-(16, 'test54', 14),
-(17, 'test56', 14),
-(18, 'test76', 14),
-(19, 'test9898', 14),
-(20, 'test984598', 14);
+(4, 'test', 14);
 
 -- --------------------------------------------------------
 
@@ -118,20 +91,14 @@ CREATE TABLE IF NOT EXISTS `session` (
   `account_id` int(11) DEFAULT NULL,
   `codebook_id` int(11) DEFAULT NULL,
   `session_name` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `session`
 --
 
 INSERT INTO `session` (`session_id`, `account_id`, `codebook_id`, `session_name`) VALUES
-(3, 14, 15, 'test'),
-(4, 14, 14, 'test2'),
-(5, 14, 15, 'test3'),
-(6, 14, 16, 'test7'),
-(7, 14, 20, 'test56'),
-(8, 14, 20, 'tet2'),
-(9, 14, 20, 'tew');
+(2, 14, 4, 'test');
 
 -- --------------------------------------------------------
 
@@ -144,6 +111,14 @@ CREATE TABLE IF NOT EXISTS `session_counts` (
   `detail_id` int(11) NOT NULL,
   `count` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `session_counts`
+--
+
+INSERT INTO `session_counts` (`session_id`, `detail_id`, `count`) VALUES
+(2, 6, 2),
+(2, 7, 0);
 
 --
 -- Indexes for dumped tables
@@ -165,13 +140,19 @@ ALTER TABLE `codebook_dtl`
 -- Indexes for table `codebook_hdr`
 --
 ALTER TABLE `codebook_hdr`
- ADD PRIMARY KEY (`codebook_id`);
+ ADD PRIMARY KEY (`codebook_id`), ADD KEY `ACCOUNT_CONSTR` (`account_id`);
 
 --
 -- Indexes for table `session`
 --
 ALTER TABLE `session`
  ADD PRIMARY KEY (`session_id`), ADD KEY `AID` (`account_id`), ADD KEY `CID` (`codebook_id`);
+
+--
+-- Indexes for table `session_counts`
+--
+ALTER TABLE `session_counts`
+ ADD KEY `session_id_constr` (`session_id`), ADD KEY `detail_id_constr` (`detail_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -181,22 +162,22 @@ ALTER TABLE `session`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `codebook_dtl`
 --
 ALTER TABLE `codebook_dtl`
-MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `codebook_hdr`
 --
 ALTER TABLE `codebook_hdr`
-MODIFY `codebook_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `codebook_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
@@ -208,11 +189,24 @@ ALTER TABLE `codebook_dtl`
 ADD CONSTRAINT `codebook_dtl_ibfk_1` FOREIGN KEY (`codebook_id`) REFERENCES `codebook_hdr` (`codebook_id`);
 
 --
+-- Constraints for table `codebook_hdr`
+--
+ALTER TABLE `codebook_hdr`
+ADD CONSTRAINT `ACCOUNT_CONSTR` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`);
+
+--
 -- Constraints for table `session`
 --
 ALTER TABLE `session`
 ADD CONSTRAINT `session_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`),
 ADD CONSTRAINT `session_ibfk_2` FOREIGN KEY (`codebook_id`) REFERENCES `codebook_hdr` (`codebook_id`);
+
+--
+-- Constraints for table `session_counts`
+--
+ALTER TABLE `session_counts`
+ADD CONSTRAINT `detail_id_constr` FOREIGN KEY (`detail_id`) REFERENCES `codebook_dtl` (`detail_id`),
+ADD CONSTRAINT `session_id_constr` FOREIGN KEY (`session_id`) REFERENCES `session` (`session_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
