@@ -1,27 +1,3 @@
-function sendHttpPostRequest(URL, params) {
-        //Request
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                        if(this.responseText == "success") {
-                                
-                                alert("Success", "codebook successfully added!");
-                                document.getElementById("codebookName").value = "";
-                                document.getElementById("codebookWord").value = "";
-                                document.getElementById("codebookEndWord").value = "";
-                                document.getElementById("codebookWords").innerHTML = "";
-                                
-                        } else {
-                                
-                                alert("Error", "Error processing request.");
-                        } 
-                }
-        };
-        xhttp.open("POST", URL, true);
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send(params);
-}
-
 function deleteCodebook() {
 	//Remove alert
 	removeCustomAlert();
@@ -60,10 +36,7 @@ function writeCodebookDropdown() {
 	xmlHttp.send(null);
 }
 
-function writeCodebookDetails(codebookID) {
-	//Params
-	var params = "codebookID=" + codebookID;
-	
+function writeCodebookDetails(codebookID) {	
 	//Request
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() { 
@@ -71,9 +44,8 @@ function writeCodebookDetails(codebookID) {
 			document.getElementById("codebookDetailsTable").innerHTML = this.responseText;
 		}            
 	}	
-	xmlHttp.open("POST", "codebookServlet?event=writeCodebookDetailsTable", true);
-        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xmlHttp.send(params);
+	xmlHttp.open("GET", "codebookServlet?event=writeCodebookDetailsTable&codebookID=" + codebookID, true);        
+        xmlHttp.send(null);
 }
 
 function createCodebook() {
@@ -84,8 +56,30 @@ function createCodebook() {
 		alert("Error", "One of the fields is empty!");
 	}
 	else {
-		var params = "codebookName=" + codebookName + "&codebookWords=" + codebookWords;
-		sendHttpPostRequest("codebookServlet?event=addCodebook", params);
+		//Get params
+		var params = "codebookName=" + codebookName + "&codebookWords=" + codebookWords;		
+
+		//Request
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				if(this.responseText == "success") {
+					
+					alert("Success", "codebook successfully added!");
+					document.getElementById("codebookName").value = "";
+					document.getElementById("codebookWord").value = "";
+					document.getElementById("codebookEndWord").value = "";
+					document.getElementById("codebookWords").innerHTML = "";
+					
+				} else {
+					
+					alert("Error", "Error processing request.");
+				} 
+			}
+		};
+		xhttp.open("POST", "codebookServlet?event=addCodebook", true);
+		xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhttp.send(params);
 	}
 }
 

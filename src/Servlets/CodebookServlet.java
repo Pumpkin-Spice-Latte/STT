@@ -46,22 +46,14 @@ public class CodebookServlet extends HttpServlet {
 
 						//Create codebook						;
 						new CodebookFactory().createCodebook(objAccount.accountID, codebookName, codebookDetails);						
-						break;
-
-					case "writeCodebookDetailsTable":
-						//Write details table
-						out.append(writeCodebookDetailsTable(Integer.parseInt(request.getParameter("codebookID"))));
-						out.close();	
-						break;
+						break;					
 
 					case "deleteCodebook":
 						int codebookID = Integer.parseInt(request.getParameter("codebookID"));
 						new CodebookFactory().deleteCodebook(codebookID, objAccount.accountID);
 						break;						
 				}
-			}	
-
-			//Send status back to client
+			}				
 			out.append("success");
 
 		} catch (Exception e) {
@@ -90,6 +82,11 @@ public class CodebookServlet extends HttpServlet {
 					case "writeCodebookDropdown":
 						//Write codebook dropdown
 						out.append(writeCodebookDropdown(objAccount.accountID));											
+						break;
+
+					case "writeCodebookDetailsTable":
+						//Write details table
+						out.append(writeCodebookDetailsTable(Integer.parseInt(request.getParameter("codebookID"))));						
 						break;
 												
 				}
