@@ -61,7 +61,19 @@ function sendHttpPostRequest(URL) {
 }
 
 function createAccount() {	
-	sendHttpPostRequest("loginServlet?event=create");
+	var isValid = true;
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	if (username.length > 32) {
+		alert("Error", "Username cannot be longer than 32 characters.");	
+		isValid = false;	
+	}
+	if (password.length > 64) {
+		alert("Error", "Password cannot be longer than 64 characters.");	
+		isValid = false;	
+	}
+	if (isValid)
+		sendHttpPostRequest("loginServlet?event=create");
 }
 
 function loginToAccount() {
