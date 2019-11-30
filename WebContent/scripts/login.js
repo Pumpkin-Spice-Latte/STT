@@ -15,6 +15,7 @@ function prepareToCreateAccount() {
 	document.getElementById("btnLogin").style.display = "none";
 	document.getElementById("btnLogin").style.visibility = "hidden";	
 	document.getElementById("anchorCreateAccount").style.visibility = "hidden";
+	document.getElementById("username").focus();
 }
 
 function cancelCreateAccount() {
@@ -25,6 +26,7 @@ function cancelCreateAccount() {
 	document.getElementById("btnLogin").style.display = "inline-block";
 	document.getElementById("btnLogin").style.visibility = "";	
 	document.getElementById("anchorCreateAccount").style.visibility = "";
+	document.getElementById("username").focus();
 	removeMessage();
 }
 
@@ -48,7 +50,8 @@ function sendHttpPostRequest(URL) {
     		} else {
     			
     			//Alert user
-    			displayMessage("Error logging in");
+			displayMessage("Error logging in");
+			document.getElementById("username").focus();
     		} 
 	    }
 	};

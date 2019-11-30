@@ -70,6 +70,7 @@ function createCodebook() {
 					document.getElementById("codebookWord").value = "";
 					document.getElementById("codebookEndWord").value = "";
 					document.getElementById("codebookWords").innerHTML = "";
+					document.getElementById("codebookName").focus();
 					
 				} else {
 					
@@ -99,7 +100,7 @@ function showView() {
 	}
 }
 
-function showCreate() {
+function showCreate() {	
 	var x = document.getElementById("codebookCreate");
 	var y = document.getElementById("codebookView");
 	if (y.style.display === "block") {
@@ -107,6 +108,7 @@ function showCreate() {
 	}
 	if (x.style.display === "none") {
 		x.style.display = "block";
+		document.getElementById("codebookName").focus();
 	}
 	else {
 		x.style.display = "none";
@@ -121,6 +123,7 @@ function showIfPhrase(select) {
 	else {
 		x.style.display = "none";
 	}
+	document.getElementById("codebookWord").focus();
 }
 
 function saveWord(select) {
@@ -135,6 +138,7 @@ function saveWord(select) {
 			z.innerHTML += x.value + " ... " + y.value + ", ";
 			x.value ="";
 			y.value = "";
+			document.getElementById("codebookWord").focus();
 		}
 		else {
         		alert("Error", "Words can only be lowercase letters.");
@@ -144,6 +148,7 @@ function saveWord(select) {
 		if (x.value.match(letters)) {
 			z.innerHTML += x.value + ", ";
 			x.value ="";
+			document.getElementById("codebookWord").focus();
 		}
 		else {
         		alert("Error", "Words can only be lowercase letters.");

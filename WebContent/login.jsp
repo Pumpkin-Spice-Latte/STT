@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="styles/login.css">
 </head>
 
-<body>
+<body onload="document.getElementById('username').focus()">
 	<div class="container-fluid">
 		<div class="title col-xs-12 col-md-12 col-lg-12" align="center">
 			<h1 id="font2" align="center">Speech2Teach Listening System</h1>
