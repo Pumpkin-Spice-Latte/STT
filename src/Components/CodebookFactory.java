@@ -47,13 +47,13 @@ public class CodebookFactory {
 				String startWord = "";
 				String endWord = "";
 				if (detail.contains("...")) {					
-					startWord = detail.substring(0, detail.indexOf(" ..."));
-					endWord = detail.substring(detail.indexOf(" ...") + 4);
+					startWord = detail.substring(1, detail.indexOf(" ..."));
+					endWord = detail.substring(detail.indexOf(" ...") + 5);
 				} else {
-					startWord = detail;
+					startWord = detail.trim();
 				}
 				if (startWord.trim().length() > 0)
-					objCodebookDAO.insertIntoCodebookDtl(codebookHeaderID, startWord.trim(), endWord.trim());
+					objCodebookDAO.insertIntoCodebookDtl(codebookHeaderID, startWord, endWord);
 			}	
 			objConnection.commit(); //Final commit
 
