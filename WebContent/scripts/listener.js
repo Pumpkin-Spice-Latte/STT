@@ -152,7 +152,7 @@ function createNewSession() {
 				lastCreatedSessionID = this.responseText;				
 				getCodebook();
 			} else {
-				alert("failure");
+				alert("Error", "Error creating session.");
 			}
                 }
         };
@@ -174,7 +174,7 @@ function getCodebook() {
 				var jsonResponse = this.responseText;
 				parseMasterTranscript(jsonResponse);
 			} else {
-				alert("Error retrieving codebook");
+				alert("Error", "Error retrieving codebook.");
 			}
 		}            
 	}
@@ -196,7 +196,7 @@ function submitMasterCountbook(masterCountbook) {
 			if (this.responseText == "success") {
 				window.location.href = "sessions.jsp";
 			} else {
-				alert("failure");
+				alert("Error", "Error submitting countbook.");
 			}
                 }
         };

@@ -6,7 +6,7 @@ function writeSessionDropdown() {
                         if (this.responseText != "error")
                                 document.getElementById("divSessionDropdown").innerHTML = this.responseText;
                         else    
-                                alert("Error loading session dropdown");
+                                alert("Error", "Error loading session dropdown.");
 		} 
 	}
 	xmlHttp.open("GET", "sessionServlet?event=writeSessionDropdown", true); 
@@ -21,7 +21,7 @@ function writeSessionDetailsTable(sessionID) {
                         if (this.responseText != "error")
                                 document.getElementById("divSessionDetailsTable").innerHTML = this.responseText;
                         else    
-                                alert("Error loading session details");
+                                alert("Error", "Error loading session details.");
 		} 
 	}
 	xmlHttp.open("GET", "sessionServlet?event=writeSessionDetailsTable&sessionID=" + sessionID, true); 
@@ -42,7 +42,7 @@ function deleteSession() {
                 if (this.readyState == 4 && this.status == 200) {
                         if(this.responseText == "success") {
                                 
-				alert("Success", "codebook successfully deleted!");
+				alert("Success", "Codebook successfully deleted!");
 				document.getElementById("divSessionDetailsTable").innerHTML = "";
 				writeSessionDropdown();				
                                 

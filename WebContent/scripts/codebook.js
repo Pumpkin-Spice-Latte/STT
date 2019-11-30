@@ -10,7 +10,7 @@ function deleteCodebook() {
         xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                         if(this.responseText == "success") {                                
-				alert("Success", "codebook successfully deleted!");  
+				alert("Success", "Codebook successfully deleted!");  
 				writeCodebookDropdown();
 				document.getElementById("codebookDetailsTable").innerHTML = "";
 
@@ -65,7 +65,7 @@ function createCodebook() {
 			if (this.readyState == 4 && this.status == 200) {
 				if(this.responseText == "success") {
 					
-					alert("Success", "codebook successfully added!");
+					alert("Success", "Codebook successfully added!");
 					document.getElementById("codebookName").value = "";
 					document.getElementById("codebookWord").value = "";
 					document.getElementById("codebookEndWord").value = "";
