@@ -23,28 +23,36 @@
 			</div>
 			<div class="main col-xs-12 col-md-12 col-lg-12" align="center">
 			
-				<div id="divCodebookDropdown"></div><br>
-				<div class="input">
-					<textarea class="textInput" id="textbox" rows="15" cols="30"></textarea>
-				</div>         
-				<button id="btnStart" onclick="startRecognition()" title="Start">Start</button>
-				<button id="btnStop" onClick="sessionAlert()" title="Stop">Stop</button>
-				<p id="message">Press the Start button</p>
-				<div class="homeButton" style="margin-top: 80px;">
-					<a href="home.jsp">Back to Homepage</a>
-				</div>	
-				
+				<div class="col-lg-12" align="center">
+					<div id="divCodebookDropdown"></div><br>
+					<div class="input">
+						<textarea class="textInput" id="textbox" rows="15" cols="30"></textarea>
+					</div>         
+					<button id="btnStart" onclick="startRecognition()" title="Start">Start</button>
+					<button id="btnStop" onClick="sessionAlert()" title="Stop">Stop</button>
+					<p id="message">Press the Start button</p>
+				</div>
+				<div class="col-lg-12" align="center">
+					<div class="col-xs-12 col-md-12 col-lg-3" align="center"></div>
+			        <div class="col-xs-12 col-md-12 col-lg-3" align="center">
+				        <div class="homeButton" align="center">
+							<a href="home.jsp">Back to Homepage</a>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-12 col-lg-3" align="center">
+				    	<div class="homeButton" align="center">
+							<a href="loginServlet?event=logout">Log Out</a>
+				    	</div>
+				    </div>
+				    <div class="col-xs-12 col-md-12 col-lg-3" align="center"></div>
+				</div>
 			    
-	
 				<!-- scripts loaded here in template -->   
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 				<script src="scripts/listener.js"></script>     	
 				<!------------------------------------->   
 	
 		    </div>
-		    <div class="title col-xs-12 col-md-12 col-lg-12" align="center">
-			<a href="loginServlet?event=logout"><img src="images/logout.png" style="height: 83px;"></a>
-		    </div>	
 		</div>
 	</body>
 </html>

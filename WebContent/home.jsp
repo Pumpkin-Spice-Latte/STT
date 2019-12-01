@@ -15,20 +15,28 @@
 		<div class="title col-xs-12 col-md-12 col-lg-12" align="center">
 			<h1 id="font2" align="center">Speech2Teach Listening System</h1>
 		</div>
-		<div class="main flex col-xs-12 col-md-12 col-lg-12" align="center" style="padding-bottom: 40px;">
-			<div class="homeButton col-lg-4">
-				<a href="sessions.jsp">View Past Sessions</a>
+		<div class="main col-xs-12 col-md-12 col-lg-12" style="padding-bottom: 40px;">
+			<div class="col-lg-4" align="center">
+				<div class="homeButton" align="center">
+					<a href="sessions.jsp">View Past Sessions</a>
+				</div>
 			</div>
-			<div class="homeButton col-lg-4" style="margin-left: 70px; margin-right: 70px">
-				<a href="listener.jsp">Start Recording</a>
+			<div class="col-lg-4" align="center">
+				<div class="homeButton" align="center" style="margin-left: 70px; margin-right: 70px">
+					<a href="listener.jsp">Start Recording</a>
+				</div>
+			</div>				
+			<div class="col-lg-4" align="center">
+				<div class="homeButton" align="center">
+					<a href="codebooks.jsp">Manage Codebooks</a>
+				</div>
 			</div>
-			<div class="homeButton col-lg-4">
-				<a href="codebooks.jsp">Manage Codebooks</a>
-			</div>														
-		</div>		
-		<div class="title col-xs-12 col-md-12 col-lg-12" align="center">
-			<a href="loginServlet?event=logout"><img src="images/logout.png" style="height: 83px;"></a>
-		</div>						
+			<div class="col-lg-12" align="center">
+				<div class="homeButton" align="center">
+					<a href="loginServlet?event=logout">Log Out</a>
+				</div>
+			</div>												
+		</div>								
 	</div>
 
 </body>
