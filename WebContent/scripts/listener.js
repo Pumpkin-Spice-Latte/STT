@@ -119,8 +119,11 @@ function writeCodebookDropdown() {
 	//Request	
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() { 
-		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-			document.getElementById("divCodebookDropdown").innerHTML = this.responseText;
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {			
+			if (this.responseText != "error")
+                                document.getElementById("divCodebookDropdown").innerHTML = this.responseText;
+                        else    
+                                alert("Error", "Error loading codebook details.");
 		}            
 	}
 	xmlHttp.open("GET", "listenerServlet?event=writeCodebookDropdown", true); 

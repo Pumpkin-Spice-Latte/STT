@@ -27,26 +27,26 @@ public class LoginServlet extends HttpServlet {
 		try {
 			//Get username and password
 			String username = request.getParameter("username");
-			String password = request.getParameter("password");
-			
-			//Get querystring to determine page event
-			String pageEvent = request.getParameter("event");
+			String password = request.getParameter("password");						
 			
 			//Instantiate account
 			Account objAccount = new Account();			
-			
-			//Determine action
-			if (pageEvent.equals("create")) {
-				
-				//Create account
-				objAccount = new AccountFactory().createAccount(username, password);
-							
-											
-			} else if (pageEvent.equals("login")) {
-				
-				//Retrieve account
-				objAccount = new AccountFactory().getAccountByUsernameAndPassword(username, password);
-			}
+					
+			//Get querystring to determine page event
+			String pageEvent = request.getParameter("event");
+			if (pageEvent != null) {
+				switch(pageEvent) {
+					case "create":						
+						//Create account
+						objAccount = new AccountFactory().createAccount(username, password);
+						break;		
+
+					case "login":
+						//Retrieve account
+						objAccount = new AccountFactory().getAccountByUsernameAndPassword(username, password);
+						break;	
+				}
+			}	
 						
 			if(objAccount.accountID != 0) {
 				//Set session
@@ -68,6 +68,29 @@ public class LoginServlet extends HttpServlet {
 			//Close response
 			out.close();
 		}			
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {				
+		try {			
+			//Get querystring to determine page event
+			String pageEvent = request.getParameter("event");
+			if (pageEvent != null) {
+				switch(pageEvent) {
+					case "logout":						
+						//Null account session
+						HttpSession session = request.getSession();  
+						session.setAttribute("currentUser", null);	
+						
+						//redirect to login
+						response.sendRedirect("login.jsp");
+					
+				}
+			}	
+			
+			
+		} catch (Exception e) {
+			//do nothing			
+		} 			
 	}
 
 }

@@ -28,8 +28,12 @@ function writeCodebookDropdown() {
 	//Request	
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() { 
-		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-			document.getElementById("codebookDropdown").innerHTML = this.responseText;
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {			
+			if (this.responseText != "error")
+                                document.getElementById("codebookDropdown").innerHTML = this.responseText;
+                        else    
+                                alert("Error", "Error loading codebook dropdown.");
+		            
 		}            
 	}
 	xmlHttp.open("GET", "codebookServlet?event=writeCodebookDropdown", true); 
@@ -40,8 +44,11 @@ function writeCodebookDetails(codebookID) {
 	//Request
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() { 
-		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-			document.getElementById("codebookDetailsTable").innerHTML = this.responseText;
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {			
+			if (this.responseText != "error")
+                                document.getElementById("codebookDetailsTable").innerHTML = this.responseText;
+                        else    
+                                alert("Error", "Error loading codebook details.");
 		}            
 	}	
 	xmlHttp.open("GET", "codebookServlet?event=writeCodebookDetailsTable&codebookID=" + codebookID, true);        

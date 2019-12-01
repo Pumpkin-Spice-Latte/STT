@@ -24,9 +24,11 @@
 			</div>
 			<div class="homeButton col-lg-4">
 				<a href="codebooks.jsp">Manage Codebooks</a>
-			</div>
-														
-		</div>								
+			</div>														
+		</div>		
+		<div class="title col-xs-12 col-md-12 col-lg-12" align="center">
+			<a href="loginServlet?event=logout"><img src="images/logout.png" style="height: 83px;"></a>
+		</div>						
 	</div>
 
 </body>
