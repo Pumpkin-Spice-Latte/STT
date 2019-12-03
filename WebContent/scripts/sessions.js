@@ -42,7 +42,7 @@ function deleteSession() {
                 if (this.readyState == 4 && this.status == 200) {
                         if(this.responseText == "success") {
                                 
-				alert("Success", "Codebook successfully deleted!");
+				alert("Success", "Session successfully deleted!");
 				document.getElementById("divSessionDetailsTable").innerHTML = "";
 				writeSessionDropdown();				
                                 
