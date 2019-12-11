@@ -31,6 +31,7 @@
 					</div>
 					<div class="col-xs-12 col-md-12 col-lg-3" align="center"></div>
 					<div id="codebookView" align="center" style="display: none; padding-top: 80px;">
+						<br>
 						<div id="codebookDropdown" align="center">
 						</div><br>					
 						<div id="codebookDetailsTable" align="center">
